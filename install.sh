@@ -44,11 +44,6 @@ check_exit $? "ComfyUI GGUF克隆失败"
 pip install --no-cache-dir -r "$basefolder/ComfyUI/custom_nodes/comfyui-gguf/requirements.txt"
 check_exit $? "ComfyUI GGUF依赖安装失败"
 
-echo "▂▂▂▂▂▂▂▂▂▂ 安装Flux▂▂▂▂▂▂▂▂▂▂"
-cd "$basefolder/ComfyUI/models/unet" || exit
-wget -O flux1-schnell-Q4_K_S.gguf https://huggingface.co/city96/FLUX.1-schnell-gguf/resolve/main/flux1-schnell-Q4_K_S.gguf?download=true
-check_exit $? "安装Flux失败"
-
 echo "▂▂▂▂▂▂▂▂▂▂ 安装Flux-schnell ▂▂▂▂▂▂▂▂▂▂"
 cd "$basefolder/ComfyUI/models/unet" || exit
 wget -O flux1-schnell-Q4_K_S.gguf https://huggingface.co/city96/FLUX.1-schnell-gguf/resolve/main/flux1-schnell-Q4_K_S.gguf?download=true
