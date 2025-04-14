@@ -27,10 +27,7 @@ pip install --no-cache-dir -r "$basefolder/ComfyUI/requirements.txt"
 check_exit $? "ComfyUI依赖安装失败"
 
 echo "▂▂▂▂▂▂▂▂▂▂ 安装PyTorch ▂▂▂▂▂▂▂▂▂▂"
-pip install --pre torch torchvision torchecho "▂▂▂▂▂▂▂▂▂▂ 安装Flux ▂▂▂▂▂▂▂▂▂▂"
-cd "$basefolder/ComfyUI/models/unet" || exit
-
-audio --index-url https://download.pytorch.org/whl/nightly/cu128
+pip install --pre torch torchvision torchecho --index-url https://download.pytorch.org/whl/nightly/cu128
 check_exit $? "PyTorch安装失败"
 
 echo "▂▂▂▂▂▂▂▂▂▂ 安装ComfyUI管理器 ▂▂▂▂▂▂▂▂▂▂"
