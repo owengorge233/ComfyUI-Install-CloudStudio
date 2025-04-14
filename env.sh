@@ -1,5 +1,3 @@
-#! /bin/sh
-#echo 'export HF_ENDPOINT=https://hf-mirror.com' >> .bashrc  # 
-#source .bashrc
-echo 'export HF_ENDPOINT=https://hf-mirror.com' >> ~/.bashrc  # 
+#! /bin/bash
+echo 'export HF_ENDPOINT=https://hf-mirror.com' >> ~/.bashrc   
 source ~/.bashrc
