@@ -29,6 +29,11 @@ sed -i 's/http:\/\/mirrors.cloud.tencent.com/https:\/\/mirrors.cloud.tencent.com
 
 # 支持通过 ssh 方式 clone github 仓库
 apt update -y && apt install -y socat
+if [ ! -d ~/.ssh ]; then
+    echo "创建SSH目录并设置权限..."
+    mkdir -vp ~/.ssh || { echo "目录创建失败"; exit 1; }
+    chmod 700 ~/.ssh || { echo "权限设置失败"; exit 1; }
+fi
 cat << EOF >> ~/.ssh/config
 Host github.com
     Hostname ssh.github.com
