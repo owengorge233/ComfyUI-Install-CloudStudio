@@ -21,9 +21,7 @@ echo 'export no_proxy=127.0.0.1,localhost,.local,.tencent.com,tencentyun.com,ppa
 echo 'export NO_PROXY=127.0.0.1,localhost,.local,.tencent.com,tencentyun.com,ppa.launchpad.net,0.0.0.0' >> ~/.zshrc
 echo 'export HF_ENDPOINT=https://hf-mirror.com' >> ~/.bashrc   
 
-set +u
 source ~/.bashrc
-set -u
 
 pip install -U huggingface_hub
 
@@ -67,7 +65,6 @@ SCRIPT_DIR="$(
 )" || exit 1
 
 ngroktokens_file="$SCRIPT_DIR/ngroktokens.txt"
-echo "ngroktokens_file: $ngroktokens_file"
 
 # 检查文件存在性
 if [ ! -f "$ngroktokens_file" ]; then
@@ -90,4 +87,8 @@ if [ -z "$NGROK_TOKEN" ]; then
 fi
 
 export NGROK_TOKEN
+echo 'export NGROK_TOKEN=$NGROK_TOKEN' >> ~/.bashrc
+
+source ~/.bashrc
+
 echo "▂▂▂▂▂▂▂▂▂▂ 操作完成 ▂▂▂▂▂▂▂▂▂▂"
