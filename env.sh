@@ -3,7 +3,16 @@
 export PS1="\u@\h:\w\$ "
 
 set -euo pipefail
-target_dir="/workspace"
+
+NGROK_TOKEN=""
+SCRIPT_DIR="$(
+    cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1
+    pwd -P
+)" || exit 1
+
+target_dir="$(dirname "$SCRIPT_DIR")"
+
+ngroktokens_file="$SCRIPT_DIR/ngroktokens.txt"
 
 echo 'export http_proxy=http://proxy.cloudstudio.work:8081' >> ~/.bashrc
 echo 'export HTTP_PROXY=http://proxy.cloudstudio.work:8081' >> ~/.bashrc
@@ -21,7 +30,30 @@ echo 'export no_proxy=127.0.0.1,localhost,.local,.tencent.com,tencentyun.com,ppa
 echo 'export NO_PROXY=127.0.0.1,localhost,.local,.tencent.com,tencentyun.com,ppa.launchpad.net,0.0.0.0' >> ~/.zshrc
 echo 'export HF_ENDPOINT=https://hf-mirror.com' >> ~/.bashrc   
 
+# 检查文件存在性
+if [ ! -f "$ngroktokens_file" ]; then
+    echo "错误：ngrok token文件 $ngroktokens_file 不存在" >&2
+else
+  # 读取首行非空内容
+  while IFS= read -r line || [ -n "$line" ]; do
+      if [ -n "$line" ]; then
+          NGROK_TOKEN="$line"
+          break
+      fi
+  done < <(head -n 1 "$ngroktokens_file")  # [6,7](@ref)
+
+  # 验证令牌有效性
+  if [ -z "$NGROK_TOKEN" ]; then
+      echo "错误：未找到有效的令牌" >&2
+  else
+    export NGROK_TOKEN
+    echo 'export NGROK_TOKEN=$NGROK_TOKEN' >> ~/.bashrc
+  fi
+fi
+
+set +u
 source ~/.bashrc
+set -u
 
 pip install -U huggingface_hub
 
@@ -57,38 +89,5 @@ find "$target_dir" -type f -name "*.sh" -print0 | xargs -0 -P 4 -I{} sh -c '
     file="{}"
     chmod -v +x "$file"
 '
-# export ngrok tokens
-NGROK_TOKEN=""
-SCRIPT_DIR="$(
-    cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1
-    pwd -P
-)" || exit 1
-
-ngroktokens_file="$SCRIPT_DIR/ngroktokens.txt"
-
-# 检查文件存在性
-if [ ! -f "$ngroktokens_file" ]; then
-    echo "错误：ngrok token文件 $ngroktokens_file 不存在" >&2
-    exit 1
-fi
-
-# 读取首行非空内容
-while IFS= read -r line || [ -n "$line" ]; do
-    if [ -n "$line" ]; then
-        NGROK_TOKEN="$line"
-        break
-    fi
-done < <(head -n 1 "$ngroktokens_file")  # [6,7](@ref)
-
-# 验证令牌有效性
-if [ -z "$NGROK_TOKEN" ]; then
-    echo "错误：未找到有效的令牌" >&2
-    exit 1
-fi
-
-export NGROK_TOKEN
-echo 'export NGROK_TOKEN=$NGROK_TOKEN' >> ~/.bashrc
-
-source ~/.bashrc
 
 echo "▂▂▂▂▂▂▂▂▂▂ 操作完成 ▂▂▂▂▂▂▂▂▂▂"
