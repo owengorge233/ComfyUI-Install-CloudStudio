@@ -47,8 +47,6 @@ Host github.com
 EOF
 chmod 600 ~/.ssh/config
 
-exit
-
 # +x 所有的.sh
 echo "▂▂▂▂▂▂▂▂▂▂ 开始+x shell脚本 ▂▂▂▂▂▂▂▂▂▂"
 [ -d "$target_dir" ] || { echo "错误：目录 $target_dir 不存在" >&2; exit 1; }
@@ -57,5 +55,30 @@ find "$target_dir" -type f -name "*.sh" -print0 | xargs -0 -P 4 -I{} sh -c '
     file="{}"
     chmod -v +x "$file"
 '
+# export ngrok tokens
+NGROK_TOKEN=""
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+ngroktokens_file="$SCRIPT_DIR/ngroktokens.txt"
+
+# 检查文件存在性
+if [ ! -f "$ngroktokens_file" ]; then
+    echo "错误：ngrok token文件 $ngroktokens_file 不存在" >&2
+    exit 1
+fi
+
+# 读取首行非空内容
+while IFS= read -r line || [ -n "$line" ]; do
+    if [ -n "$line" ]; then
+        NGROK_TOKEN="$line"
+        break
+    fi
+done < <(head -n 1 "$ngroktokens_file")  # [6,7](@ref)
+
+# 验证令牌有效性
+if [ -z "$NGROK_TOKEN" ]; then
+    echo "错误：未找到有效的令牌" >&2
+    exit 1
+fi
+
+export NGROK_TOKEN
 echo "▂▂▂▂▂▂▂▂▂▂ 操作完成 ▂▂▂▂▂▂▂▂▂▂"
-echo "所有.sh文件已添加执行权限"
