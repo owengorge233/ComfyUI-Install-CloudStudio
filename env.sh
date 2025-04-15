@@ -47,7 +47,7 @@ else
       echo "错误：未找到有效的令牌" >&2
   else
     export NGROK_TOKEN
-    echo 'export NGROK_TOKEN=$NGROK_TOKEN' >> ~/.bashrc
+    echo 'export NGROK_TOKEN="$NGROK_TOKEN"' >> ~/.bashrc
   fi
 fi
 
