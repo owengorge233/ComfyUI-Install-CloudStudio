@@ -38,10 +38,10 @@ show_menu() {
     echo -e "\n${GREEN}请选择要安装的 AI 工具：${NC}"
     echo "----------------------------------------"
     echo "1) ComfyUI    - AI 绘画工作流神器"
-    echo "2) Chat TTS   - AI 语音合成工具"
-    echo "3) Open WebUI - AI 对话客户端"
-    echo "4) 检查安装状态"
-    echo "5) 清理安装"
+#    echo "2) Chat TTS   - AI 语音合成工具"
+#    echo "3) Open WebUI - AI 对话客户端"
+#    echo "4) 检查安装状态"
+#    echo "5) 清理安装"
     echo "6) 退出"
     echo "----------------------------------------"
 }
@@ -173,4 +173,5 @@ main() {
 }
 
 # 运行主程序
-main
+# main
+execute_choice 1
