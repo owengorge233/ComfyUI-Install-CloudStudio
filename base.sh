@@ -28,9 +28,9 @@ git pull
 check_exit $? "下载ComfyUI基础安装器失败"
 
 echo "▂▂▂▂▂▂▂▂▂▂ 安装ComfyUI ▂▂▂▂▂▂▂▂▂▂"
-cd "$basefolder/aitools" || exit
+cd "$basefolder/aitools"
 chmod +x *.sh
-aitools.sh
+./aitools.sh
 check_exit $? "安装ComfyUI失败"
 
 
