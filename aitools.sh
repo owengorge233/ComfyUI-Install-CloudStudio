@@ -9,7 +9,7 @@
 # bash aitools.sh
 
 # 导入初始化脚本
-source "./utils/init.sh"
+source "/workspace/ComfyUI-Install-CloudStudio/utils/init.sh"
 
 # 初始化环境
 init_script
