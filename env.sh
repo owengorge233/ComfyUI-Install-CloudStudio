@@ -47,6 +47,8 @@ Host github.com
 EOF
 chmod 600 ~/.ssh/config
 
+exit
+
 # +x 所有的.sh
 echo "▂▂▂▂▂▂▂▂▂▂ 开始+x shell脚本 ▂▂▂▂▂▂▂▂▂▂"
 [ -d "$target_dir" ] || { echo "错误：目录 $target_dir 不存在" >&2; exit 1; }
