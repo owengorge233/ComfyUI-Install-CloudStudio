@@ -70,7 +70,7 @@ install_manager() {
 
 # 生成一个运行程序的说明文件的函数
 generate_run_program_description() {
-    cat << EOF > "$WORK_DIR/使用说明.md"
+    cat << EOF > "$WORK_DIR/manual.md"
 # ComfyUI Setup
 ## 一键安装脚本
 ### [获取[强化版一键安装脚本](https://gf.bilibili.com/item/detail/1107198073)](https://gf.bilibili.com/item/detail/1107198073)
