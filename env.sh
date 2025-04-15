@@ -1,5 +1,7 @@
 #! /bin/bash
 
+export PS1="\u@\h:\w\$ "
+
 set -euo pipefail
 target_dir="/workspace"
 
@@ -19,7 +21,9 @@ echo 'export no_proxy=127.0.0.1,localhost,.local,.tencent.com,tencentyun.com,ppa
 echo 'export NO_PROXY=127.0.0.1,localhost,.local,.tencent.com,tencentyun.com,ppa.launchpad.net,0.0.0.0' >> ~/.zshrc
 echo 'export HF_ENDPOINT=https://hf-mirror.com' >> ~/.bashrc   
 
+set +u
 source ~/.bashrc
+set -u
 
 pip install -U huggingface_hub
 
@@ -61,7 +65,9 @@ SCRIPT_DIR="$(
     cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1
     pwd -P
 )" || exit 1
+
 ngroktokens_file="$SCRIPT_DIR/ngroktokens.txt"
+echo "ngroktokens_file: $ngroktokens_file"
 
 # 检查文件存在性
 if [ ! -f "$ngroktokens_file" ]; then
