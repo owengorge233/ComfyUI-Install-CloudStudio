@@ -20,7 +20,8 @@ echo "▂▂▂▂▂▂▂▂▂▂ 清理旧环境 ▂▂▂▂▂▂▂▂▂
 rm -rfv ComfyUI  # 显示删除详情
 
 echo "▂▂▂▂▂▂▂▂▂▂ 执行aitools ▂▂▂▂▂▂▂▂▂▂"
-bash $basefolder/ComfyUI-Install-CloudStudio/aitools.sh
+cd "$basefolder/ComfyUI-Install-CloudStudio" || exit
+bash ./aitools.sh
 
 echo "▂▂▂▂▂▂▂▂▂▂ 安装ComfyUI GGUF支持 ▂▂▂▂▂▂▂▂▂▂"
 cd "$basefolder/ComfyUI/custom_nodes" || exit
