@@ -1,4 +1,8 @@
 #! /bin/bash
+
+set -euo pipefail
+target_dir="/workspace"
+
 echo 'export http_proxy=http://proxy.cloudstudio.work:8081' >> ~/.bashrc
 echo 'export HTTP_PROXY=http://proxy.cloudstudio.work:8081' >> ~/.bashrc
 echo 'export https_proxy=http://proxy.cloudstudio.work:8081' >> ~/.bashrc
@@ -42,3 +46,14 @@ Host github.com
     ProxyCommand socat - PROXY:proxy.cloudstudio.work:%h:%p,proxyport=8081
 EOF
 chmod 600 ~/.ssh/config
+
+# +x 所有的.sh
+echo "▂▂▂▂▂▂▂▂▂▂ 开始+x shell脚本 ▂▂▂▂▂▂▂▂▂▂"
+[ -d "$target_dir" ] || { echo "错误：目录 $target_dir 不存在" >&2; exit 1; }
+
+find "$target_dir" -type f -name "*.sh" -print0 | xargs -0 -P 4 -I{} sh -c '
+    file="{}"
+    chmod -v +x "$file"
+'
+echo "▂▂▂▂▂▂▂▂▂▂ 操作完成 ▂▂▂▂▂▂▂▂▂▂"
+echo "所有.sh文件已添加执行权限"
