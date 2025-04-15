@@ -45,7 +45,7 @@ Host github.com
     User git
     ProxyCommand socat - PROXY:proxy.cloudstudio.work:%h:%p,proxyport=8081
 EOF
-chmod 600 ~/.ssh/config
+[ -f ~/.ssh/config ] && chmod 600 ~/.ssh/config
 
 # +x 所有的.sh
 echo "▂▂▂▂▂▂▂▂▂▂ 开始+x shell脚本 ▂▂▂▂▂▂▂▂▂▂"
@@ -57,7 +57,10 @@ find "$target_dir" -type f -name "*.sh" -print0 | xargs -0 -P 4 -I{} sh -c '
 '
 # export ngrok tokens
 NGROK_TOKEN=""
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+SCRIPT_DIR="$(
+    cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1
+    pwd -P
+)" || exit 1
 ngroktokens_file="$SCRIPT_DIR/ngroktokens.txt"
 
 # 检查文件存在性
