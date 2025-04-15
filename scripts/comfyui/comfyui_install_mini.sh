@@ -4,6 +4,11 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 ROOT_DIR="$(dirname "$SCRIPT_DIR")"
 ROOT_ROOT_DIR="$(dirname "$ROOT_DIR")"
 
+echo "SCRIPT_DIR: $SCRIPT_DIR"
+echo "ROOT_DIR: $ROOT_DIR"
+echo "ROOT_ROOT_DIR: $ROOT_ROOT_DIR"
+
+
 # 导入初始化脚本
 source "/workspace/utils/init.sh"
 
