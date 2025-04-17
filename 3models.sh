@@ -1,4 +1,6 @@
 #!/bin/bash
+
+# 错误处理函数
 check_exit() {
     local exit_code=$1
     local error_msg=$2
@@ -8,23 +10,50 @@ check_exit() {
     fi
 }
 
-set -euxo pipefail  # 启用严格模式：-e(错误退出) -u(变量检查) -x(打印命令) -o pipefail(管道错误检测)
-trap 'echo "错误发生在命令: $BASH_COMMAND, 行号: $LINENO, 退出状态: $?" >&2; exit 1' ERR  # 错误时输出调试信息[11](@ref)
+# 启用严格模式
+set -euxo pipefail
+trap 'echo "错误发生在命令: $BASH_COMMAND, 行号: $LINENO, 退出状态: $?" >&2; exit 1' ERR
 
+# 基础目录设置
 basefolder="/workspace"
-echo "▂▂▂▂▂▂▂▂▂▂ 设置工作目录 ▂▂▂▂▂▂▂▂▂▂"
-cd "$basefolder" || { echo "目录切换失败: $basefolder"; exit 1; }
 
-echo "▂▂▂▂▂▂▂▂▂▂ 安装Flux-schnell ▂▂▂▂▂▂▂▂▂▂"
-cd "$basefolder/ComfyUI/models/unet" || exit
-wget -O flux1-schnell-Q4_K_S.gguf https://huggingface.co/city96/FLUX.1-schnell-gguf/resolve/main/flux1-schnell-Q4_K_S.gguf?download=true
-check_exit $? "安装Flux-schnell失败"
-wget -O t5-v1_1-xxl-encoder-Q4_K_S.gguf https://huggingface.co/city96/t5-v1_1-xxl-encoder-gguf/blob/main/t5-v1_1-xxl-encoder-Q4_K_S.gguf?download=true
-check_exit $? "安装t5-v1_1-xxl-encoder-Q4_K_S.gguf失败"
+# 文件列表（使用 | 分隔三个参数）
+files=(
+    # 格式："保存的文件名 | 下载链接 | 目标目录"
+    "v1-5-pruned-emaonly-fp16.safetensors | https://pan.baidu.com/s/1wOjBaw6XXMRZm84Vms6m2w?pwd=x7uj | ${basefolder}/ComfyUI/models/checkpoints"
+    # 添加更多文件示例：
+    # "config.yaml | https://example.com/config_v12.yaml | /etc/app_config"
+)
 
-echo "▂▂▂▂▂▂▂▂▂▂ 安装vae ▂▂▂▂▂▂▂▂▂▂"
-cd "$basefolder/ComfyUI/models/vae" || exit
-wget -O ae.safetensors https://huggingface.co/black-forest-labs/FLUX.1-schnell/blob/main/ae.safetensors?download=true
-check_exit $? "ae.safetensors失败"
+echo "▂▂▂▂▂▂▂▂▂▂ 开始批量下载 ▂▂▂▂▂▂▂▂▂▂"
 
-echo "✅ 所有组件安装完成"
+for entry in "${files[@]}"; do
+    # 清理参数并分割
+    clean_entry=$(echo "$entry" | tr -s ' ' | xargs)
+    IFS='|' read -r filename url target_dir <<< "$clean_entry"
+
+    # 移除两端空格
+    filename=$(echo "$filename" | xargs)
+    url=$(echo "$url" | xargs)
+    target_dir=$(echo "$target_dir" | xargs)
+
+    # 构建完整路径
+    target_dir="${target_dir%/}"  # 移除目录末尾的/
+    save_path="${target_dir}/${filename}"
+
+    echo "▄▄▄▄▄▄▄▄▄▄ 处理文件：$filename ▄▄▄▄▄▄▄▄▄▄"
+    echo "下载链接：$url"
+    echo "存储位置：$save_path"
+
+    # 创建目标目录
+    mkdir -p "$target_dir"
+    check_exit $? "目录创建失败：$target_dir"
+
+    # 下载文件
+    wget --progress=bar:force -O "$save_path" "$url"
+    check_exit $? "文件下载失败：$filename"
+
+    echo "✅ 已保存到：$save_path"
+done
+
+echo "✅ 所有文件下载完成"
