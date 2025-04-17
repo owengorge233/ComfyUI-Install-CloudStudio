@@ -20,7 +20,7 @@ basefolder="/workspace"
 # 文件列表（使用 | 分隔三个参数）
 files=(
     # 格式："保存的文件名 | 下载链接 | 目标目录"
-    "v1-5-pruned-emaonly-fp16.safetensors | https://pan.baidu.com/s/1wOjBaw6XXMRZm84Vms6m2w?pwd=x7uj | ${basefolder}/ComfyUI/models/checkpoints"
+    "v1-5-pruned-emaonly-fp16.safetensors | https://huggingface.co/Comfy-Org/stable-diffusion-v1-5-archive/resolve/main/v1-5-pruned-emaonly.safetensors?download=true | ${basefolder}/ComfyUI/models/checkpoints"
     # 添加更多文件示例：
     # "config.yaml | https://example.com/config_v12.yaml | /etc/app_config"
 )
