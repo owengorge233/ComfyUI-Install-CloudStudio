@@ -1,0 +1,22 @@
+@news @Wiki Editor
+**Name:** ClearRealityV1 Soft + Normal
+**License:** CC BY-NC-SA 4.0
+**Link:** https://mega.nz/folder/Xc4wnC7T#yUS5-9-AbRxLhpdPW_8f2w
+**Model Architecture:** SPAN
+**Scale:** 4
+**Purpose:** Realistic images of humans, foliage, trees, buildings, etc.
+
+**Iterations:** 300k (over multiple models)
+**batch_size:** 12-20
+**HR_size:** 128-256
+**Epoch:** 40?
+**Dataset:** My own UltraSharpV2 dataset, my 8k dataset (v2), Nomos8k, and FaceUp
+**Dataset_size:** 19k tiles
+**OTF Training** No (made with datasetDestroyer)
+**Pretrained_Model_G:** Official pretrain
+
+**Description:** Nice to release a model again! This one is intended for realistic imagery, and works especially well on faces, hair, and nature shots. I trained this model on SPAN, which as of the time of release, you'll need chaiNNer-nightly for. I aimed for a softer, more natural look for this model with as few artifacts as possible.
+
+In addition to the Normal model, I've included a "soft" model. The Soft model is... softer. Basically it was an earlier version of the model with a more limited dataset. It produces more natural output on games or rendered content, but suffers a bit more with realistic stuff.
+
+Note: In shots with DOF (depth of field) or bokeh, unfortunately there will be artifacts. Sorry
