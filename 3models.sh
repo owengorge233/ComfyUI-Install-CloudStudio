@@ -23,7 +23,7 @@ files=(
     "v1-5-pruned-emaonly-fp16.safetensors | https://huggingface.co/Comfy-Org/stable-diffusion-v1-5-archive/resolve/main/v1-5-pruned-emaonly.safetensors?download=true | ${basefolder}/ComfyUI/models/checkpoints"
     "flux1-dev-fp8.safetensors | https://huggingface.co/AiAF/flux1-dev-fp8.safetensors/resolve/main/AiAF/flux1-dev-fp8.safetensors?download=true | ${basefolder}/ComfyUI/models/unet"
     "diffusion_pytorch_model.safetensors  | https://huggingface.co/PreFLMR/diffusion_pytorch_model.safetensors/resolve/main/diffusion_pytorch_model.safetensors?download=true | ${basefolder}/ComfyUI/models/controlnet"
-    "ae.safetensors  | https://huggingface.co/receptektas/black-forest-labs-ae_safetensors/resolve/main/ae.safetensors?download=true ${basefolder}/ComfyUI/models/vae"
+    "ae.safetensors  | https://huggingface.co/receptektas/black-forest-labs-ae_safetensors/resolve/main/ae.safetensors?download=true | ${basefolder}/ComfyUI/models/vae"
     # 添加更多文件示例：
     # "config.yaml | https://example.com/config_v12.yaml | /etc/app_config"
 )

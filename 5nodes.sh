@@ -8,44 +8,43 @@ check_exit() {
     fi
 }
 
-set -euxo pipefail  # 启用严格模式：-e(错误退出) -u(变量检查) -x(打印命令) -o pipefail(管道错误检测)
-trap 'echo "错误发生在命令: $BASH_COMMAND, 行号: $LINENO, 退出状态: $?" >&2; exit 1' ERR  # 错误时输出调试信息[11](@ref)
+set -euxo pipefail
+trap 'echo "错误发生在命令: $BASH_COMMAND, 行号: $LINENO, 退出状态: $?" >&2; exit 1' ERR
 
 basefolder="/workspace"
 
 echo "▂▂▂▂▂▂▂▂▂▂ 设置工作目录 ▂▂▂▂▂▂▂▂▂▂"
 cd "$basefolder" || { echo "目录切换失败: $basefolder"; exit 1; }
 
-# 定义项目数组（URL+目录名）
+# 修改点1：使用 | 分隔符定义项目数组（URL|目录名|pip选项）
 projects=(
-    "https://github.com/ltdrdata/ComfyUI-Impact-Pack ComfyUI-Impact-Pack"
-    "https://github.com/ltdrdata/ComfyUI-Impact-Subpack ComfyUI-Impact-Subpack"
-    "https://github.com/pythongosssss/ComfyUI-Custom-Scripts ComfyUI-Custom-Scripts"
-    "https://github.com/PowerHouseMan/ComfyUI-AdvancedLivePortrait ComfyUI-AdvancedLivePortrait"
-    "https://github.com/rgthree/rgthree-comfy rgthree-comfy"
-    "https://github.com/AlekPet/ComfyUI_Custom_Nodes_AlekPet ComfyUI_Custom_Nodes_AlekPet"
-    "https://github.com/ssitu/ComfyUI_UltimateSDUpscale ComfyUI_UltimateSDUpscale"
-    "https://github.com/pythongosssss/ComfyUI-WD14-Tagger ComfyUI-WD14-Tagger"
-    "https://github.com/chrisgoringe/cg-use-everywhere cg-use-everywhere"
-    "https://github.com/LarryJane491/Lora-Training-in-Comfy Lora-Training-in-Comfy"
-    "https://github.com/pollockjj/ComfyUI-MultiGPU ComfyUI-MultiGPU"
-    "https://github.com/pamparamm/ComfyUI-ppm ComfyUI-ppm"
-    "https://github.com/attashe/ComfyUI-FluxRegionAttention ComfyUI-FluxRegionAttention"
-    "https://github.com/facok/ComfyUI-TeaCacheHunyuanVideo ComfyUI-TeaCacheHunyuanVideo"
-    "https://github.com/LarryJane491/Image-Captioning-in-ComfyUI Image-Captioning-in-ComfyUI"
-    "https://github.com/daxcay/ComfyUI-DataSet ComfyUI-DataSet"
-    "https://github.com/MieMieeeee/ComfyUI-CaptionThis ComfyUI-CaptionThis"
-    "https://github.com/madtunebk/ComfyUI-ControlnetAux ComfyUI-ControlnetAux"
-    "https://github.com/Cyber-BCat/ComfyUI_Auto_Caption ComfyUI_Auto_Caption"
+    "https://github.com/ltdrdata/ComfyUI-Impact-Subpack | ComfyUI-Impact-Subpack"
+    "https://github.com/ltdrdata/ComfyUI-Impact-Pack | ComfyUI-Impact-Pack | --upgrade --force-reinstall"
+    "https://github.com/pythongosssss/ComfyUI-Custom-Scripts | ComfyUI-Custom-Scripts"
+    "https://github.com/PowerHouseMan/ComfyUI-AdvancedLivePortrait | ComfyUI-AdvancedLivePortrait"
+    "https://github.com/rgthree/rgthree-comfy | rgthree-comfy"
+    "https://github.com/AlekPet/ComfyUI_Custom_Nodes_AlekPet | ComfyUI_Custom_Nodes_AlekPet"
+    "https://github.com/ssitu/ComfyUI_UltimateSDUpscale | ComfyUI_UltimateSDUpscale"
+    "https://github.com/pythongosssss/ComfyUI-WD14-Tagger | ComfyUI-WD14-Tagger"
+    "https://github.com/chrisgoringe/cg-use-everywhere | cg-use-everywhere"
+    "https://github.com/LarryJane491/Lora-Training-in-Comfy | Lora-Training-in-Comfy"
+    "https://github.com/pollockjj/ComfyUI-MultiGPU | ComfyUI-MultiGPU"
+    "https://github.com/pamparamm/ComfyUI-ppm | ComfyUI-ppm"
+    "https://github.com/attashe/ComfyUI-FluxRegionAttention | ComfyUI-FluxRegionAttention"
+    "https://github.com/facok/ComfyUI-TeaCacheHunyuanVideo | ComfyUI-TeaCacheHunyuanVideo"
+    "https://github.com/LarryJane491/Image-Captioning-in-ComfyUI | Image-Captioning-in-ComfyUI"
+    "https://github.com/daxcay/ComfyUI-DataSet | ComfyUI-DataSet"
+    "https://github.com/MieMieeeee/ComfyUI-CaptionThis | ComfyUI-CaptionThis"
+    "https://github.com/madtunebk/ComfyUI-ControlnetAux | ComfyUI-ControlnetAux"
+    "https://github.com/Cyber-BCat/ComfyUI_Auto_Caption | ComfyUI_Auto_Caption"
 )
 
 echo "▂▂▂▂▂▂▂▂▂▂ 开始批量安装 ▂▂▂▂▂▂▂▂▂▂"
 cd "$basefolder/ComfyUI/custom_nodes" || exit
 
 for project in "${projects[@]}"; do
-    # 分割URL和目录名
-    url=$(echo "$project" | awk '{print $1}')
-    dir_name=$(echo "$project" | awk '{print $2}')
+    # 修改点2：使用 IFS 分割三个字段
+    IFS='|' read -r url dir_name pip_options <<< "$project"
 
     # 自动生成目录名（如果未指定）
     if [ -z "$dir_name" ]; then
@@ -58,9 +57,14 @@ for project in "${projects[@]}"; do
     git clone --progress "$url" "$dir_name"
     check_exit $? "$dir_name 克隆失败"
 
-    # 安装依赖
+    # 修改点3：动态应用 pip 选项
     if [ -f "$dir_name/requirements.txt" ]; then
-        pip install --no-cache-dir -r "$dir_name/requirements.txt"
+        if [ -n "$pip_options" ]; then
+            echo "应用 pip 选项: $pip_options"
+            pip install $pip_options --no-cache-dir -r "$dir_name/requirements.txt"
+        else
+            pip install --no-cache-dir -r "$dir_name/requirements.txt"
+        fi
         check_exit $? "$dir_name 依赖安装失败"
     else
         echo "⚠️ $dir_name 未找到 requirements.txt，跳过依赖安装"
