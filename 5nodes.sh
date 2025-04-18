@@ -20,11 +20,10 @@ cd "$basefolder" || { echo "目录切换失败: $basefolder"; exit 1; }
 projects=(
     "https://github.com/ltdrdata/ComfyUI-Impact-Subpack | ComfyUI-Impact-Subpack"
     "https://github.com/ltdrdata/ComfyUI-Impact-Pack | ComfyUI-Impact-Pack | --upgrade --force-reinstall"
+    "https://github.com/rgthree/rgthree-comfy | rgthree-comfy"
     "https://github.com/pythongosssss/ComfyUI-Custom-Scripts | ComfyUI-Custom-Scripts"
     "https://github.com/PowerHouseMan/ComfyUI-AdvancedLivePortrait | ComfyUI-AdvancedLivePortrait"
-    "https://github.com/rgthree/rgthree-comfy | rgthree-comfy"
     "https://github.com/AlekPet/ComfyUI_Custom_Nodes_AlekPet | ComfyUI_Custom_Nodes_AlekPet"
-    "https://github.com/ssitu/ComfyUI_UltimateSDUpscale | ComfyUI_UltimateSDUpscale"
     "https://github.com/pythongosssss/ComfyUI-WD14-Tagger | ComfyUI-WD14-Tagger"
     "https://github.com/chrisgoringe/cg-use-everywhere | cg-use-everywhere"
     "https://github.com/LarryJane491/Lora-Training-in-Comfy | Lora-Training-in-Comfy"
@@ -41,6 +40,9 @@ projects=(
 
 echo "▂▂▂▂▂▂▂▂▂▂ 开始批量安装 ▂▂▂▂▂▂▂▂▂▂"
 cd "$basefolder/ComfyUI/custom_nodes" || exit
+
+# 安装 ComfyUI_UltimateSDUpscale
+git clone https://github.com/ssitu/ComfyUI_UltimateSDUpscale --recursive
 
 for project in "${projects[@]}"; do
     # 分割字段并去除首尾空格

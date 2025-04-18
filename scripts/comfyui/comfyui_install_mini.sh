@@ -23,7 +23,7 @@ fi
 
 # 安装ComfyUI
 install_comfyui() {
-    local repo_url="https://openi.pcl.ac.cn/niubi/ComfyUI.git"
+    local repo_url="https://github.com/comfyanonymous/ComfyUI.git"
     local target_dir="$WORK_DIR/$PROJECT_NAME"
     
     log_info "开始安装 ComfyUI..."
@@ -46,8 +46,8 @@ install_comfyui() {
 
 # 安装 comfyui-manager
 install_manager() {
-    local repo_url="https://openi.pcl.ac.cn/niubi/comfyui-manager.git"
-    local target_dir="$WORK_DIR/$PROJECT_NAME/custom_nodes/comfyui-manager"
+    local repo_url="https://github.com/Comfy-Org/ComfyUI-Manager.git"
+    local target_dir="$WORK_DIR/$PROJECT_NAME/custom_nodes/ComfyUI-Manager"
     
     log_info "开始安装 ComfyUI Manager..."
     
