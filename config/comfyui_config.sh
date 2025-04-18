@@ -41,8 +41,8 @@ export DOWNLOAD_THREADS=4
 
 # 仓库配置
 export REPO_URLS=(
-    ["comfyui"]="https://github.com/comfyanonymous/ComfyUI.git"
-    ["manager"]="https://github.com/Comfy-Org/ComfyUI-Manager.git"
+    ["comfyui"]="https://openi.pcl.ac.cn/niubi/ComfyUI.git"
+    ["manager"]="https://openi.pcl.ac.cn/niubi/comfyui-manager.git"
 )
 
 # 模型配置
