@@ -13,6 +13,10 @@ trap 'echo "错误发生在命令: $BASH_COMMAND, 行号: $LINENO, 退出状态:
 
 basefolder="/workspace"
 
+echo "▂▂▂▂▂▂▂▂▂▂ 安装totch torchvision torchaudio CUDA128 ▂▂▂▂▂▂▂▂▂▂"
+pip install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cu128
+check_exit $? "安装totch torchvision torchaudio CUDA128失败"
+
 echo "▂▂▂▂▂▂▂▂▂▂ 设置工作目录 ▂▂▂▂▂▂▂▂▂▂"
 cd "$basefolder" || { echo "目录切换失败: $basefolder"; exit 1; }
 
