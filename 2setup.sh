@@ -51,8 +51,13 @@ else
 fi
 
 echo "▂▂▂▂▂▂▂▂▂▂ 安装totch torchvision torchaudio CUDA128 ▂▂▂▂▂▂▂▂▂▂"
-pip install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cu128 --upgrade --force-reinstall
+pip install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cu126 --upgrade --force-reinstall
 check_exit $? "安装totch torchvision torchaudio CUDA128失败"
+
+# 重新安装Comfy依赖
+echo "▂▂▂▂▂▂▂▂▂▂ 重新安装Comfy依赖 ▂▂▂▂▂▂▂▂▂▂"
+cd "$basefolder/ComfyUI" || exit
+pip install -r ./requirements.txt --upgrade --force-reinstall
 
 echo "▂▂▂▂▂▂▂▂▂▂ 安装models ▂▂▂▂▂▂▂▂▂▂"
 cd "$basefolder/ComfyUI/models/" || exit
