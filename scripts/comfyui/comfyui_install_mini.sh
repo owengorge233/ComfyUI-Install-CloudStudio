@@ -4,8 +4,13 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 ROOT_DIR="$(dirname "$SCRIPT_DIR")"
 ROOT_ROOT_DIR="$(dirname "$ROOT_DIR")"
 
+echo "SCRIPT_DIR: $SCRIPT_DIR"
+echo "ROOT_DIR: $ROOT_DIR"
+echo "ROOT_ROOT_DIR: $ROOT_ROOT_DIR"
+
+
 # 导入初始化脚本
-source "$ROOT_ROOT_DIR/utils/init.sh"
+source "/workspace/utils/init.sh"
 
 # 初始化环境
 init_script
@@ -18,7 +23,7 @@ fi
 
 # 安装ComfyUI
 install_comfyui() {
-    local repo_url="https://openi.pcl.ac.cn/niubi/ComfyUI.git"
+    local repo_url="https://github.com/comfyanonymous/ComfyUI.git"
     local target_dir="$WORK_DIR/$PROJECT_NAME"
     
     log_info "开始安装 ComfyUI..."
@@ -41,7 +46,7 @@ install_comfyui() {
 
 # 安装 comfyui-manager
 install_manager() {
-    local repo_url="https://openi.pcl.ac.cn/niubi/comfyui-manager.git"
+    local repo_url="https://github.com/Comfy-Org/ComfyUI-Manager.git"
     local target_dir="$WORK_DIR/$PROJECT_NAME/custom_nodes/comfyui-manager"
     
     log_info "开始安装 ComfyUI Manager..."
@@ -65,7 +70,7 @@ install_manager() {
 
 # 生成一个运行程序的说明文件的函数
 generate_run_program_description() {
-    cat << EOF > "$WORK_DIR/使用说明.md"
+    cat << EOF > "$WORK_DIR/manual.md"
 # ComfyUI Setup
 ## 一键安装脚本
 ### [获取[强化版一键安装脚本](https://gf.bilibili.com/item/detail/1107198073)](https://gf.bilibili.com/item/detail/1107198073)

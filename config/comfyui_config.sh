@@ -40,20 +40,20 @@ export MAX_RETRIES=3
 export DOWNLOAD_THREADS=4
 
 # 仓库配置
-export REPO_URLS=(
-    ["comfyui"]="https://openi.pcl.ac.cn/niubi/ComfyUI.git"
-    ["manager"]="https://openi.pcl.ac.cn/niubi/comfyui-manager.git"
+declare -A REPO_URLS=(
+    [comfyui]="https://github.com/comfyanonymous/ComfyUI.git"
+    [manager]="https://github.com/Comfy-Org/ComfyUI-Manager.git"
 )
 
 # 模型配置
-export MODEL_SOURCES=(
+declare -A MODEL_SOURCES=(
     # HuggingFace模型
-    ["sd_v15_hf"]="huggingface:runwayml/stable-diffusion-v1-5:v1-5-pruned-emaonly.safetensors:checkpoints"
-    ["vae_hf"]="huggingface:stabilityai/sd-vae-ft-mse:vae-ft-mse-840000-ema-pruned.safetensors:vae"
+    [sd_v15_hf]="huggingface:runwayml/stable-diffusion-v1-5:v1-5-pruned-emaonly.safetensors:checkpoints"
+    [vae_hf]="huggingface:stabilityai/sd-vae-ft-mse:vae-ft-mse-840000-ema-pruned.safetensors:vae"
     
     # ModelScope模型
-    ["sd_v15_ms"]="modelscope:AI-ModelScope/stable-diffusion-v1-5:v1-5-pruned-emaonly.safetensors:checkpoints"
-    ["controlnet_ms"]="modelscope:damo/cv_controlnet_canny:control_v11p_sd15_canny.pth:controlnet"
+    [sd_v15_ms]="modelscope:AI-ModelScope/stable-diffusion-v1-5:v1-5-pruned-emaonly.safetensors:checkpoints"
+    [controlnet_ms]="modelscope:damo/cv_controlnet_canny:control_v11p_sd15_canny.pth:controlnet"
 )
 
 # 系统要求
