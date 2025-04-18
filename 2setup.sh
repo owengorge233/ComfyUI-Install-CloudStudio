@@ -57,6 +57,7 @@ fi
 echo "▂▂▂▂▂▂▂▂▂▂ 安装models ▂▂▂▂▂▂▂▂▂▂"
 cd "$basefolder/ComfyUI/models/" || exit
 cp -Rfv  $basefolder/ComfyUI-Install-CloudStudio/models $basefolder/ComfyUI/models
+
 cd "$basefolder/ComfyUI/models/clip" || exit
 wget -O clip_l.safetensors https://www.modelscope.cn/models/livehouse/clip_l/resolve/master/clip_l.safetensors
 check_exit $? "安装clip_l.safetensors失败"
