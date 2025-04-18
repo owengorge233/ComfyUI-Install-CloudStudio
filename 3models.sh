@@ -21,6 +21,8 @@ basefolder="/workspace"
 files=(
     # 格式："保存的文件名 | 下载链接 | 目标目录"
     "v1-5-pruned-emaonly-fp16.safetensors | https://huggingface.co/Comfy-Org/stable-diffusion-v1-5-archive/resolve/main/v1-5-pruned-emaonly.safetensors?download=true | ${basefolder}/ComfyUI/models/checkpoints"
+    "flux1-dev-fp8.safetensors | https://huggingface.co/AiAF/flux1-dev-fp8.safetensors/resolve/main/AiAF/flux1-dev-fp8.safetensors?download=true | ${basefolder}/ComfyUI/models/unet"
+    "diffusion_pytorch_model.safetensors  | https://huggingface.co/PreFLMR/diffusion_pytorch_model.safetensors/resolve/main/diffusion_pytorch_model.safetensors?download=true | ${basefolder}/ComfyUI/models/controlnet"
     # 添加更多文件示例：
     # "config.yaml | https://example.com/config_v12.yaml | /etc/app_config"
 )
