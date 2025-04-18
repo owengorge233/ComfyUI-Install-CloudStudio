@@ -16,7 +16,7 @@ basefolder="/workspace"
 echo "▂▂▂▂▂▂▂▂▂▂ 设置工作目录 ▂▂▂▂▂▂▂▂▂▂"
 cd "$basefolder" || { echo "目录切换失败: $basefolder"; exit 1; }
 
-# 修改点1：使用 | 分隔符定义项目数组（URL|目录名|pip选项）
+# 定义项目数组（URL|目录名|pip选项）
 projects=(
     "https://github.com/ltdrdata/ComfyUI-Impact-Subpack | ComfyUI-Impact-Subpack"
     "https://github.com/ltdrdata/ComfyUI-Impact-Pack | ComfyUI-Impact-Pack | --upgrade --force-reinstall"
@@ -43,8 +43,11 @@ echo "▂▂▂▂▂▂▂▂▂▂ 开始批量安装 ▂▂▂▂▂▂▂▂
 cd "$basefolder/ComfyUI/custom_nodes" || exit
 
 for project in "${projects[@]}"; do
-    # 修改点2：使用 IFS 分割三个字段
+    # 分割字段并去除首尾空格
     IFS='|' read -r url dir_name pip_options <<< "$project"
+    url=$(echo "$url" | xargs)              # 过滤 URL 首尾空格[9,10](@ref)
+    dir_name=$(echo "$dir_name" | xargs)    # 过滤目录名首尾空格[5,11](@ref)
+    pip_options=$(echo "$pip_options" | xargs)  # 过滤选项首尾空格[6,7](@ref)
 
     # 自动生成目录名（如果未指定）
     if [ -z "$dir_name" ]; then
@@ -53,11 +56,11 @@ for project in "${projects[@]}"; do
 
     echo "▄▄▄▄▄▄▄▄▄▄ 安装 $dir_name ▄▄▄▄▄▄▄▄▄▄"
 
-    # 克隆仓库
+    # 克隆仓库（路径含空格时自动处理[1,4](@ref)）
     git clone --progress "$url" "$dir_name"
     check_exit $? "$dir_name 克隆失败"
 
-    # 修改点3：动态应用 pip 选项
+    # 动态应用 pip 选项
     if [ -f "$dir_name/requirements.txt" ]; then
         if [ -n "$pip_options" ]; then
             echo "应用 pip 选项: $pip_options"
