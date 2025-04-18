@@ -33,10 +33,6 @@ source "$basefolder/ComfyUI-Install-CloudStudio/utils/init.sh"
 # 初始化环境
 init_script
 
-#echo "▂▂▂▂▂▂▂▂▂▂ 安装totch torchvision torchaudio CUDA128 ▂▂▂▂▂▂▂▂▂▂"
-#pip install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cu128
-#check_exit $? "安装totch torchvision torchaudio CUDA128失败"
-
 echo "▂▂▂▂▂▂▂▂▂▂ 设置工作目录 ▂▂▂▂▂▂▂▂▂▂"
 cd "$basefolder" || { echo "目录切换失败: $basefolder"; exit 1; }
 
@@ -54,14 +50,18 @@ else
     exit 1
 fi
 
+echo "▂▂▂▂▂▂▂▂▂▂ 安装totch torchvision torchaudio CUDA128 ▂▂▂▂▂▂▂▂▂▂"
+pip install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cu128 --upgrade --force-reinstall
+check_exit $? "安装totch torchvision torchaudio CUDA128失败"
+
 echo "▂▂▂▂▂▂▂▂▂▂ 安装models ▂▂▂▂▂▂▂▂▂▂"
 cd "$basefolder/ComfyUI/models/" || exit
 cp -Rfv  $basefolder/ComfyUI-Install-CloudStudio/models/* $basefolder/ComfyUI/models
 
 cd "$basefolder/ComfyUI/models/clip" || exit
-wget -O clip_l.safetensors https://www.modelscope.cn/models/livehouse/clip_l/resolve/master/clip_l.safetensors
+#wget -O clip_l.safetensors https://www.modelscope.cn/models/livehouse/clip_l/resolve/master/clip_l.safetensors
 check_exit $? "安装clip_l.safetensors失败"
-wget -O t5xxl_fp8_e4m3fn.safetensors https://www.modelscope.cn/models/zc0501/t5xxl_fp8/resolve/20250322200338/t5xxl_fp8_e4m3fn.safetensors
+#wget -O t5xxl_fp8_e4m3fn.safetensors https://www.modelscope.cn/models/zc0501/t5xxl_fp8/resolve/20250322200338/t5xxl_fp8_e4m3fn.safetensors
 check_exit $? "安装t5xxl_fp8_e4m3fn.safetensors失败"
 
 echo "▂▂▂▂▂▂▂▂▂▂ 安装ComfyUI GGUF支持 ▂▂▂▂▂▂▂▂▂▂"
