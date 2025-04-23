@@ -68,32 +68,6 @@ install_manager() {
     log_info "ComfyUI Manager 安装成功"
 }
 
-# 生成一个运行程序的说明文件的函数
-generate_run_program_description() {
-    cat << EOF > "$WORK_DIR/manual.md"
-# ComfyUI Setup
-## 一键安装脚本
-### [获取[强化版一键安装脚本](https://gf.bilibili.com/item/detail/1107198073)](https://gf.bilibili.com/item/detail/1107198073)
-### [强化版视频教程](https://www.bilibili.com/video/BV13UBRYVEmX/)
-
-## 运行ComfyUI 命令
-
-\`cd $WORK_DIR/ComfyUI/ && python main.py\`
-
-## 运行Ngrok命令
-如何获取Ngrok token ,请看视频教程。[token获取网址 https://dashboard.ngrok.com/get-started/setup/linux](https://dashboard.ngrok.com/get-started/setup/linux)
-
-\`ngrok http 8188\`
-
-访问 Ngrok 隧道服务生成的网址
-
-[获取其它脚本请访问 https://gf.bilibili.com/item/detail/1107198073](https://gf.bilibili.com/item/detail/1107198073)
-
-EOF
-
-    echo "说明文件已生成: $WORK_DIR/使用说明.md"
-}
-
 # 主函数
 main() {
     log_info "=== 开始 ComfyUI 安装流程 ==="
@@ -107,9 +81,6 @@ main() {
     
     # 安装 ComfyUI Manager
     install_manager
-
-    # 生成运行程序的说明文件
-    generate_run_program_description
 }
 
 # 运行主程序

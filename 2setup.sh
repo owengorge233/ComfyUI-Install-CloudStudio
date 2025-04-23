@@ -50,9 +50,9 @@ else
     exit 1
 fi
 
-echo "▂▂▂▂▂▂▂▂▂▂ 安装totch torchvision torchaudio CUDA128 ▂▂▂▂▂▂▂▂▂▂"
+echo "▂▂▂▂▂▂▂▂▂▂ 安装totch torchvision torchaudio CUDA126 ▂▂▂▂▂▂▂▂▂▂"
 pip install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cu126 --upgrade --force-reinstall
-check_exit $? "安装totch torchvision torchaudio CUDA128失败"
+check_exit $? "安装totch torchvision torchaudio CUDA126失败"
 
 # 重新安装Comfy依赖
 echo "▂▂▂▂▂▂▂▂▂▂ 重新安装Comfy依赖 ▂▂▂▂▂▂▂▂▂▂"
@@ -62,12 +62,7 @@ pip install -r ./requirements.txt --upgrade --force-reinstall
 echo "▂▂▂▂▂▂▂▂▂▂ 安装models ▂▂▂▂▂▂▂▂▂▂"
 cd "$basefolder/ComfyUI/models/" || exit
 cp -Rfv  $basefolder/ComfyUI-Install-CloudStudio/models/* $basefolder/ComfyUI/models
-
-cd "$basefolder/ComfyUI/models/clip" || exit
-#wget -O clip_l.safetensors https://www.modelscope.cn/models/livehouse/clip_l/resolve/master/clip_l.safetensors
-check_exit $? "安装clip_l.safetensors失败"
-#wget -O t5xxl_fp8_e4m3fn.safetensors https://www.modelscope.cn/models/zc0501/t5xxl_fp8/resolve/20250322200338/t5xxl_fp8_e4m3fn.safetensors
-check_exit $? "安装t5xxl_fp8_e4m3fn.safetensors失败"
+pip install ultralytics --upgrade --force-reinstall
 
 echo "▂▂▂▂▂▂▂▂▂▂ 安装ComfyUI GGUF支持 ▂▂▂▂▂▂▂▂▂▂"
 cd "$basefolder/ComfyUI/custom_nodes" || exit

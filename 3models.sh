@@ -20,12 +20,23 @@ basefolder="/workspace"
 # 文件列表（使用 | 分隔三个参数）
 files=(
     # 格式："保存的文件名 | 下载链接 | 目标目录"
-    "v1-5-pruned-emaonly-fp16.safetensors | https://huggingface.co/Comfy-Org/stable-diffusion-v1-5-archive/resolve/main/v1-5-pruned-emaonly.safetensors?download=true | ${basefolder}/ComfyUI/models/checkpoints"
-    "flux1-dev-fp8.safetensors | https://huggingface.co/AiAF/flux1-dev-fp8.safetensors/resolve/main/AiAF/flux1-dev-fp8.safetensors?download=true | ${basefolder}/ComfyUI/models/unet"
-    "diffusion_pytorch_model.safetensors  | https://huggingface.co/PreFLMR/diffusion_pytorch_model.safetensors/resolve/main/diffusion_pytorch_model.safetensors?download=true | ${basefolder}/ComfyUI/models/controlnet"
-    "ae.safetensors  | https://huggingface.co/receptektas/black-forest-labs-ae_safetensors/resolve/main/ae.safetensors?download=true | ${basefolder}/ComfyUI/models/vae"
-    # 添加更多文件示例：
-    # "config.yaml | https://example.com/config_v12.yaml | /etc/app_config"
+    # "v1-5-pruned-emaonly-fp16.safetensors | https://huggingface.co/Comfy-Org/stable-diffusion-v1-5-archive/resolve/main/v1-5-pruned-emaonly.safetensors?download=true | ${basefolder}/ComfyUI/models/checkpoints"
+
+    ##########  Flux Fp8 组合， 需32GB vram
+    # "flux1-dev-fp8.safetensors | https://huggingface.co/Kijai/flux-fp8/resolve/main/flux1-dev-fp8-e4m3fn.safetensors?download=true | ${basefolder}/ComfyUI/models/unet"
+    # "clip_l.safetensors | https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/clip_l.safetensors?download=true | ${basefolder}/ComfyUI/models/clip"
+    # "t5xxl_fp8_e4m3fn.safetensors | https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/t5xxl_fp8_e4m3fn.safetensors?download=true | ${basefolder}/ComfyUI/models/clip"
+    # # 这个模型需授权下载。可手动下载，然后上传到 /workspace/ComfyUI/models/vae目录下
+    # # "ae.safetensors  | https://huggingface.co/black-forest-labs/FLUX.1-schnell/resolve/main/ae.safetensors?download=true | ${basefolder}/ComfyUI/models/vae"
+    # "flux-vae-bf16.safetensors  | https://huggingface.co/Kijai/flux-fp8/resolve/main/flux-vae-bf16.safetensors?download=true | ${basefolder}/ComfyUI/models/vae"
+    # "diffusion_pytorch_model.safetensors  | https://huggingface.co/InstantX/FLUX.1-dev-Controlnet-Union/resolve/main/diffusion_pytorch_model.safetensors?download=true | ${basefolder}/ComfyUI/models/controlnet"
+
+    ######### Flux GGUF 组合
+    # "flux1-dev-Q4_K_S.gguf | https://huggingface.co/city96/FLUX.1-dev-gguf/resolve/main/flux1-dev-Q4_K_S.gguf?download=true | ${basefolder}/ComfyUI/models/unet"
+    # "clip_l.safetensors | https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/clip_l.safetensors?download=true | ${basefolder}/ComfyUI/models/clip"
+    # "t5-v1_1-xxl-encoder-Q4_K_S.gguf | https://huggingface.co/city96/t5-v1_1-xxl-encoder-gguf/resolve/main/t5-v1_1-xxl-encoder-Q4_K_S.gguf?download=true | ${basefolder}/ComfyUI/models/clip"
+    # "flux-vae-bf16.safetensors  | https://huggingface.co/Kijai/flux-fp8/resolve/main/flux-vae-bf16.safetensors?download=true | ${basefolder}/ComfyUI/models/vae"
+    "raulc0399_FLUX.1_dev_openpose.safetensors  | https://huggingface.co/raulc0399/flux_dev_openpose_controlnet/resolve/main/model.safetensors?download=true | ${basefolder}/ComfyUI/models/controlnet"
 )
 
 echo "▂▂▂▂▂▂▂▂▂▂ 开始批量下载 ▂▂▂▂▂▂▂▂▂▂"
@@ -52,7 +63,7 @@ for entry in "${files[@]}"; do
     mkdir -p "$target_dir"
     check_exit $? "目录创建失败：$target_dir"
 
-    # 下载文件
+    # 下载文件（关键修改点：强制覆盖）
     wget --progress=bar:force -O "$save_path" "$url"
     check_exit $? "文件下载失败：$filename"
 
