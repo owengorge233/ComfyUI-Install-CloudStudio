@@ -18,15 +18,15 @@ cd "$basefolder" || { echo "目录切换失败: $basefolder"; exit 1; }
 
 # 定义项目数组（URL|目录名|pip选项）
 projects=(
-#    "https://github.com/ltdrdata/ComfyUI-Impact-Subpack | ComfyUI-Impact-Subpack | --upgrade --force-reinstall"
-#    "https://github.com/rgthree/rgthree-comfy | rgthree-comfy | --upgrade --force-reinstall"
-#    "https://github.com/chrisgoringe/cg-use-everywhere | cg-use-everywhere | --upgrade --force-reinstall"
-#    "https://github.com/PowerHouseMan/ComfyUI-AdvancedLivePortrait | ComfyUI-AdvancedLivePortrait"
-#    "https://github.com/ltdrdata/ComfyUI-Impact-Pack | ComfyUI-Impact-Pack | --upgrade --force-reinstall"
-#     "https://github.com/ltdrdata/comfyui-unsafe-torch | comfyui-unsafe-torch"
-     "https://github.com/WASasquatch/was-node-suite-comfyui | was-node-suite-comfyui"
-     "https://github.com/spacepxl/ComfyUI-Image-Filters | ComfyUI-Image-Filters"
-     "https://github.com/cubiq/ComfyUI_essentials | ComfyUI_essentials"
+    "https://github.com/ltdrdata/ComfyUI-Impact-Subpack | ComfyUI-Impact-Subpack | --upgrade --force-reinstall"
+    "https://github.com/rgthree/rgthree-comfy | rgthree-comfy | --upgrade --force-reinstall"
+    "https://github.com/chrisgoringe/cg-use-everywhere | cg-use-everywhere | --upgrade --force-reinstall"
+    "https://github.com/PowerHouseMan/ComfyUI-AdvancedLivePortrait | ComfyUI-AdvancedLivePortrait"
+    "https://github.com/ltdrdata/ComfyUI-Impact-Pack | ComfyUI-Impact-Pack | --upgrade --force-reinstall"
+     "https://github.com/ltdrdata/comfyui-unsafe-torch | comfyui-unsafe-torch"
+#     "https://github.com/WASasquatch/was-node-suite-comfyui | was-node-suite-comfyui"
+#     "https://github.com/spacepxl/ComfyUI-Image-Filters | ComfyUI-Image-Filters"
+#     "https://github.com/cubiq/ComfyUI_essentials | ComfyUI_essentials"
  #   "https://github.com/pythongosssss/ComfyUI-Custom-Scripts | ComfyUI-Custom-Scripts"
  #   "https://github.com/AlekPet/ComfyUI_Custom_Nodes_AlekPet | ComfyUI_Custom_Nodes_AlekPet"
  #   "https://github.com/pythongosssss/ComfyUI-WD14-Tagger | ComfyUI-WD14-Tagger"
@@ -45,38 +45,58 @@ projects=(
 echo "▂▂▂▂▂▂▂▂▂▂ 开始批量安装 ▂▂▂▂▂▂▂▂▂▂"
 cd "$basefolder/ComfyUI/custom_nodes" || exit
 
-# 安装 ComfyUI_UltimateSDUpscale
-git clone https://github.com/ssitu/ComfyUI_UltimateSDUpscale --recursive
+# 处理 ComfyUI_UltimateSDUpscale（需求2）
+upscale_dir="ComfyUI_UltimateSDUpscale"
+if [ -d "$upscale_dir" ]; then
+    echo "✅ $upscale_dir 已存在，跳过克隆"
+else
+    echo "▄▄▄▄▄▄▄▄▄▄ 克隆 UltimateSDUpscale ▄▄▄▄▄▄▄▄▄▄"
+    git clone https://github.com/ssitu/ComfyUI_UltimateSDUpscale --recursive
+    check_exit $? "UltimateSDUpscale 克隆失败"
+fi
 
+# 安装主项目（需求1）
 for project in "${projects[@]}"; do
-    # 分割字段并去除首尾空格
-    IFS='|' read -r url dir_name pip_options <<< "$project"
-    url=$(echo "$url" | xargs)              # 过滤 URL 首尾空格[9,10](@ref)
-    dir_name=$(echo "$dir_name" | xargs)    # 过滤目录名首尾空格[5,11](@ref)
-    pip_options=$(echo "$pip_options" | xargs)  # 过滤选项首尾空格[6,7](@ref)
+    IFS='|' read -r url raw_dir raw_pip <<< "$project"
+    url=$(echo "$url" | xargs)
+    dir_name=$(echo "$raw_dir" | xargs)
+    pip_options=$(echo "$raw_pip" | xargs)
 
     # 自动生成目录名（如果未指定）
-    if [ -z "$dir_name" ]; then
-        dir_name=$(basename "$url" .git)
+    [ -z "$dir_name" ] && dir_name=$(basename "$url" .git)
+
+    echo "▄▄▄▄▄▄▄▄▄▄ 处理 $dir_name ▄▄▄▄▄▄▄▄▄▄"
+
+    # 判断安装类型
+    if [ -n "$pip_options" ]; then
+        # 强制安装模式
+        if [ -d "$dir_name" ]; then
+            echo "⚠️ 检测到强制安装选项，删除旧目录: $dir_name"
+            rm -rf "$dir_name"
+        fi
+        echo "克隆仓库: $url"
+        git clone --progress "$url" "$dir_name"
+        check_exit $? "$dir_name 克隆失败"
+    else
+        # 普通安装模式
+        if [ -d "$dir_name" ]; then
+            echo "✅ 目录已存在，跳过克隆: $dir_name"
+        else
+            echo "克隆仓库: $url"
+            git clone --progress "$url" "$dir_name"
+            check_exit $? "$dir_name 克隆失败"
+        fi
     fi
 
-    echo "▄▄▄▄▄▄▄▄▄▄ 安装 $dir_name ▄▄▄▄▄▄▄▄▄▄"
-
-    # 克隆仓库（路径含空格时自动处理[1,4](@ref)）
-    git clone --progress "$url" "$dir_name"
-    check_exit $? "$dir_name 克隆失败"
-
-    # 动态应用 pip 选项
+    # 安装依赖
     if [ -f "$dir_name/requirements.txt" ]; then
-        if [ -n "$pip_options" ]; then
-            echo "应用 pip 选项: $pip_options"
-            pip install $pip_options --no-cache-dir -r "$dir_name/requirements.txt"
-        else
-            pip install --no-cache-dir -r "$dir_name/requirements.txt"
-        fi
+        echo "安装Python依赖..."
+        pip_cmd="pip install --no-cache-dir"
+        [ -n "$pip_options" ] && pip_cmd+=" $pip_options"
+        eval "$pip_cmd -r $dir_name/requirements.txt"
         check_exit $? "$dir_name 依赖安装失败"
     else
-        echo "⚠️ $dir_name 未找到 requirements.txt，跳过依赖安装"
+        echo "⚠️ 未找到 requirements.txt，跳过依赖安装"
     fi
 done
 
