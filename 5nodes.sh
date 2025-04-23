@@ -27,7 +27,6 @@ projects=(
      "https://github.com/WASasquatch/was-node-suite-comfyui | was-node-suite-comfyui"
      "https://github.com/spacepxl/ComfyUI-Image-Filters | ComfyUI-Image-Filters"
      "https://github.com/cubiq/ComfyUI_essentials | ComfyUI_essentials"
-  
  #   "https://github.com/pythongosssss/ComfyUI-Custom-Scripts | ComfyUI-Custom-Scripts"
  #   "https://github.com/AlekPet/ComfyUI_Custom_Nodes_AlekPet | ComfyUI_Custom_Nodes_AlekPet"
  #   "https://github.com/pythongosssss/ComfyUI-WD14-Tagger | ComfyUI-WD14-Tagger"
