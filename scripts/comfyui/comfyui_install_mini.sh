@@ -39,7 +39,7 @@ install_comfyui() {
     fi
     
     log_info "安装 ComfyUI 依赖..."
-    pip install -r requirements.txt
+    pip install -r ./requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple --force-reinstall --user
     pip install aria2
     log_info "ComfyUI 安装成功"
 }
