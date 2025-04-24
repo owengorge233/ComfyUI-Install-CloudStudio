@@ -15,8 +15,8 @@ basefolder="/workspace"
 project_dir="$basefolder/fluxgym"
 
 echo "▂▂▂▂▂▂▂▂▂▂ 环境状态检测 ▂▂▂▂▂▂▂▂▂▂"
-# 检测当前是否在虚拟环境中 [2,9](@ref)
-if [ -n "$VIRTUAL_ENV" ]; then
+# 安全检测虚拟环境变量
+if [ -n "${VIRTUAL_ENV:-}" ]; then
     echo "🔄 检测到当前处于虚拟环境中，正在退出..."
     deactivate || check_exit $? "虚拟环境退出失败"
     echo "✅ 已退出原虚拟环境"
