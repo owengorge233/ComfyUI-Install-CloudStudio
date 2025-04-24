@@ -89,5 +89,4 @@ find "$target_dir" -type f -name "*.sh" -print0 | xargs -0 -P 4 -I{} sh -c '
     file="{}"
     chmod -v +x "$file"
 '
-
 echo "▂▂▂▂▂▂▂▂▂▂ 操作完成 ▂▂▂▂▂▂▂▂▂▂"

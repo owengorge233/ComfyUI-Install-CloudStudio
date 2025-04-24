@@ -33,15 +33,6 @@ else
 fi
 
 echo "▂▂▂▂▂▂▂▂▂▂ 安装Fluxgym ▂▂▂▂▂▂▂▂▂▂"
-# 创建虚拟环境
-if [ ! -d "$basefolder/fluxgym/fluxgym_env" ]; then
-    python -m venv "$basefolder/fluxgym/fluxgym_env" || check_exit $? "虚拟环境创建失败"
-else
-    echo "✅ 虚拟环境已存在，跳过创建"
-fi
-
-# 激活虚拟环境
-source "$basefolder/fluxgym/fluxgym_env/bin/activate" || check_exit $? "虚拟环境激活失败"
 
 # 安装 sd-scripts 依赖
 cd "$basefolder/fluxgym/sd-scripts" || check_exit $? "目录切换失败: sd-scripts"
@@ -50,5 +41,8 @@ pip install --no-cache-dir -r requirements.txt || check_exit $? "sd-scripts 依�
 # 安装 fluxgym 依赖
 cd "$basefolder/fluxgym" || check_exit $? "目录切换失败: fluxgym"
 pip install --no-cache-dir -r requirements.txt || check_exit $? "fluxgym 依赖安装失败"
+
+# 安装Torch等
+pip install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121 || check_exit $? "安装torch等失败"
 
 echo "✅ 所有项目安装完成"
