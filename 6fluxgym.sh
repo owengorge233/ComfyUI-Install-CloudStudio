@@ -43,6 +43,6 @@ cd "$basefolder/fluxgym" || check_exit $? "目录切换失败: fluxgym"
 pip install --no-cache-dir -r requirements.txt || check_exit $? "fluxgym 依赖安装失败"
 
 # 安装Torch等
-pip install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121 || check_exit $? "安装torch等失败"
+pip install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121 --upgrade --force-reinstall || check_exit $? "安装torch等失败"
 
 echo "✅ 所有项目安装完成"
