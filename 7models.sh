@@ -17,13 +17,14 @@ trap 'echo "错误发生在命令: $BASH_COMMAND, 行号: $LINENO, 退出状态:
 # 基础目录设置
 basefolder="/workspace"
 
-# 文件列表（使用 | 分隔三个参数）
+$basefolder/ComfyUI-Install_CloudStudio/copydir.sh -s $basefolder/aimodels -d $basefolder/fluxgym/models
+
 files=(
     # 格式："保存的文件名 | 下载链接 | 目标目录"
     ##########  Flux Fp8 组合， 需32GB vram
     "clip_l.safetensors | https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/clip_l.safetensors?download=true | ${basefolder}/fluxgym/models/clip"
     "flux1-dev2pro.safetensors | https://huggingface.co/bdsqlsz/flux1-dev2pro-single/resolve/main/flux1-dev2pro.safetensors?download=true | ${basefolder}/fluxgym/models/unet"
-    # "flux1-schnell.sft | https://huggingface.co/black-forest-labs/FLUX.1-schnell/resolve/main/flux1-schnell.safetensors?download=true | ${basefolder}/fluxgym/models/unet"
+    "flux1-schnell.safetensors | https://huggingface.co/black-forest-labs/FLUX.1-schnell/resolve/main/flux1-schnell.safetensors?download=true | ${basefolder}/fluxgym/models/unet"
     # "flux1-dev.sft | https://huggingface.co/black-forest-labs/FLUX.1-dev/resolve/main/flux1-dev.safetensors?download=true | ${basefolder}/fluxgym/models/unet"
     # 需手动下载
     # "ae.safetensors  | https://huggingface.co/black-forest-labs/FLUX.1-schnell/resolve/main/ae.safetensors?download=true | ${basefolder}/fluxgym/models/vae"
@@ -44,6 +45,11 @@ for entry in "${files[@]}"; do
     # 构建完整路径
     target_dir="${target_dir%/}"  # 移除目录末尾的/
     save_path="${target_dir}/${filename}"
+
+    if [ -f "$save_path" ]; then
+        echo "⏩ 文件已存在，跳过下载"
+        continue  # 跳过当前循环的后续操作
+    fi
 
     echo "▄▄▄▄▄▄▄▄▄▄ 处理文件：$filename ▄▄▄▄▄▄▄▄▄▄"
     echo "下载链接：$url"
