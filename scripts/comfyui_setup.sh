@@ -65,11 +65,6 @@ run_installation() {
     
     # 验证文件复制
     local required_files=(
-        "$WORK_DIR/scripts/conda.sh"
-        "$WORK_DIR/scripts/cuda-pytorch_update.sh"
-        "$WORK_DIR/scripts/comfyui_install.sh"
-        "$WORK_DIR/scripts/download.sh"
-        "$WORK_DIR/scripts/run.sh"
         "$WORK_DIR/utils/init.sh"
         "$WORK_DIR/utils/log_utils.sh"
         "$WORK_DIR/utils/conda_utils.sh"
@@ -77,8 +72,6 @@ run_installation() {
         "$WORK_DIR/utils/color_vars.sh"
         "$WORK_DIR/config/comfyui_config.sh"
         "$WORK_DIR/config/supervisord.conf"
-        "$WORK_DIR/scripts/cloudstudio_init.sh"
-        "$WORK_DIR/scripts/ngrok.sh"
     )
     
     local missing_files=()
@@ -122,54 +115,7 @@ run_installation() {
         fi
     fi
     
-    # COMFYUI_INSTALL
-    if should_execute_step "COMFYUI_INSTALL"; then
-        log_info "开始安装 ComfyUI"
-        if bash "$WORK_DIR/scripts/comfyui_install.sh"; then
-            save_progress "COMFYUI_INSTALL"
-            log_info "ComfyUI 安装完成"
-        else
-            log_error "ComfyUI 安装失败"
-            return 1
-        fi
-    fi
-    
-    # MODEL_DOWNLOAD
-    if should_execute_step "MODEL_DOWNLOAD"; then
-        log_info "开始下载模型"
-        if bash "$WORK_DIR/scripts/download.sh"; then
-            if [ "$DOWNLOAD_MODELS" = "true" ]; then
-                save_progress "MODEL_DOWNLOAD"
-            fi
-            log_info "模型下载完成"
-        else
-            log_error "模型下载失败"
-            return 0  # 继续执行，不中断安装流程
-        fi
-    fi
-    
-    # SERVICE_START
-    if should_execute_step "SERVICE_START"; then
-        log_info "准备启动服务"
-        if bash "$WORK_DIR/scripts/run.sh"; then
-            save_progress "SERVICE_START"
-            log_info "服务启动完成"
-        else
-            log_error "服务启动失败"
-            return 1
-        fi
-    fi
-    
-    # 初始化 CloudStudio 环境
-    log_info "初始化 CloudStudio 环境..."
-    bash "$WORK_DIR/scripts/cloudstudio_init.sh"
 
-    # 最后一步使用 COMPLETE 状态
-    if should_execute_step "COMPLETE"; then
-        save_progress "COMPLETE"
-        log_info "安装完成"
-    fi
-    
     return 0
 }
 

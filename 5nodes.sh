@@ -18,12 +18,14 @@ cd "$basefolder" || { echo "目录切换失败: $basefolder"; exit 1; }
 
 # 定义项目数组（URL|目录名|pip选项）
 projects=(
-    "https://github.com/ltdrdata/ComfyUI-Impact-Subpack | ComfyUI-Impact-Subpack | --upgrade --force-reinstall"
-    "https://github.com/rgthree/rgthree-comfy | rgthree-comfy | --upgrade --force-reinstall"
-    "https://github.com/chrisgoringe/cg-use-everywhere | cg-use-everywhere | --upgrade --force-reinstall"
+    "https://github.com/Comfy-Org/ComfyUI-Manager.git | comfyui-manager"
+    "https://github.com/city96/ComfyUI-GGUF | comfyui-gguf"
+    "https://github.com/ltdrdata/ComfyUI-Impact-Subpack | ComfyUI-Impact-Subpack"
+    "https://github.com/rgthree/rgthree-comfy | rgthree-comfy"
+    "https://github.com/chrisgoringe/cg-use-everywhere | cg-use-everywhere"
     "https://github.com/PowerHouseMan/ComfyUI-AdvancedLivePortrait | ComfyUI-AdvancedLivePortrait"
     "https://github.com/ltdrdata/ComfyUI-Impact-Pack | ComfyUI-Impact-Pack | --upgrade --force-reinstall"
-     "https://github.com/ltdrdata/comfyui-unsafe-torch | comfyui-unsafe-torch"
+    "https://github.com/ltdrdata/comfyui-unsafe-torch | comfyui-unsafe-torch"
 #     "https://github.com/WASasquatch/was-node-suite-comfyui | was-node-suite-comfyui"
 #     "https://github.com/spacepxl/ComfyUI-Image-Filters | ComfyUI-Image-Filters"
 #     "https://github.com/cubiq/ComfyUI_essentials | ComfyUI_essentials"

@@ -17,58 +17,52 @@ set -euxo pipefail  # 启用严格模式：-e(错误退出) -u(变量检查) -x(
 trap 'echo "错误发生在命令: $BASH_COMMAND, 行号: $LINENO, 退出状态: $?" >&2; exit 1' ERR  # 错误时输出调试信息[11](@ref)
 
 basefolder="/workspace"
-if [ -d "$basefolder/ComfyUI" ]; then
-    echo "错误：ComfyUI 目录已存在，请手动备份或迁移后重试。"
-    exit 1
+
+# 安装 ngrok
+echo "安装 ngrok..."
+if command -v ngrok &> /dev/null; then
+    echo "ngrok 已安装"
+else
+    echo "ngrok 未安装，开始安装..."
+    curl -sSL https://ngrok-agent.s3.amazonaws.com/ngrok.asc \
+        | tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null \
+        && echo "deb https://ngrok-agent.s3.amazonaws.com buster main" \
+        | tee /etc/apt/sources.list.d/ngrok.list \
+        && apt update \
+        && apt install ngrok
 fi
 
-if [ -d "$basefolder/ComfyUI-Install-CloudStudio/utils/init.sh" ]; then
-    echo "错误：utils/init.sh不存在"
-    exit 1
-fi
-
-# 导入初始化脚本
-source "$basefolder/ComfyUI-Install-CloudStudio/utils/init.sh"
-
-# 初始化环境
-init_script
+echo "▂▂▂▂▂▂▂▂▂▂ 安装totch torchvision torchaudio CUDA121 ▂▂▂▂▂▂▂▂▂▂"
+pip install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cu121 --upgrade --force-reinstall
+check_exit $? "安装totch torchvision torchaudio CUDA121失败"
 
 echo "▂▂▂▂▂▂▂▂▂▂ 设置工作目录 ▂▂▂▂▂▂▂▂▂▂"
 cd "$basefolder" || { echo "目录切换失败: $basefolder"; exit 1; }
 
 echo "▂▂▂▂▂▂▂▂▂▂ 安装comfyui ▂▂▂▂▂▂▂▂▂▂"
-cd "$basefolder/ComfyUI-Install-CloudStudio" || exit
-
-# 安装comfyui
-install_1="comfyui_setup_mini.sh"
-log_info "启动 ComfyUI 安装程序..."
-if [ -f "./scripts/$install_1" ]; then
-    log_info "$install_1 已找到"
-    bash "./scripts/$install_1"
+if [ -d "$basefolder/ComfyUI" ]; then
+    echo "更新现有的 ComfyUI 安装..."
+    cd "$basefolder/ComfyUI"
+    git pull
+    check_exit $? "更新ComfyUI失败"
 else
-    not_found_script "$install_1"
-    exit 1
+    echo "克隆 ComfyUI 仓库..."
+    git clone https://github.com/comfyanonymous/ComfyUI.git ComfyUI
+    check_exit $? "克隆ComfyUI仓库失败"
 fi
 
-echo "▂▂▂▂▂▂▂▂▂▂ 安装totch torchvision torchaudio CUDA126 ▂▂▂▂▂▂▂▂▂▂"
-pip install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cu126 --upgrade --force-reinstall
-check_exit $? "安装totch torchvision torchaudio CUDA126失败"
-
-# 重新安装Comfy依赖
-echo "▂▂▂▂▂▂▂▂▂▂ 重新安装Comfy依赖 ▂▂▂▂▂▂▂▂▂▂"
-cd "$basefolder/ComfyUI" || exit
-pip install -r ./requirements.txt --upgrade --force-reinstall
+echo "▂▂▂▂▂▂▂▂▂▂ 更新ComfyUI依赖 ▂▂▂▂▂▂▂▂▂▂"
+if [ -d "$basefolder/ComfyUI" ]; then
+   cd $basefolder/ComfyUI
+   pip install -r ./requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple --force-reinstall --user
+   check_exit $? "更新ComfyUI依赖失败"
+   pip install aria2
+   echo "更新ComfyUI依赖成功"
+fi
 
 echo "▂▂▂▂▂▂▂▂▂▂ 安装models ▂▂▂▂▂▂▂▂▂▂"
 cd "$basefolder/ComfyUI/models/" || exit
 cp -Rfv  $basefolder/ComfyUI-Install-CloudStudio/models/* $basefolder/ComfyUI/models
 pip install ultralytics --upgrade --force-reinstall
-
-echo "▂▂▂▂▂▂▂▂▂▂ 安装ComfyUI GGUF支持 ▂▂▂▂▂▂▂▂▂▂"
-cd "$basefolder/ComfyUI/custom_nodes" || exit
-git clone --progress https://github.com/city96/ComfyUI-GGUF comfyui-gguf
-check_exit $? "ComfyUI GGUF克隆失败"
-pip install --no-cache-dir -r "$basefolder/ComfyUI/custom_nodes/comfyui-gguf/requirements.txt"
-check_exit $? "ComfyUI GGUF依赖安装失败"
 
 echo "✅ 安装完成"

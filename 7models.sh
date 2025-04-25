@@ -21,8 +21,10 @@ basefolder="/workspace"
 files=(
     # 格式："保存的文件名 | 下载链接 | 目标目录"
     ##########  Flux Fp8 组合， 需32GB vram
-    "flux1-dev.sft | https://huggingface.co/black-forest-labs/FLUX.1-dev/resolve/main/flux1-dev.safetensors?download=true | ${basefolder}/fluxgym/models/unet"
     "clip_l.safetensors | https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/clip_l.safetensors?download=true | ${basefolder}/fluxgym/models/clip"
+    "flux1-dev2pro.safetensors | https://huggingface.co/bdsqlsz/flux1-dev2pro-single/resolve/main/flux1-dev2pro.safetensors?download=true | ${basefolder}/fluxgym/models/unet"
+    # "flux1-schnell.sft | https://huggingface.co/black-forest-labs/FLUX.1-schnell/resolve/main/flux1-schnell.safetensors?download=true | ${basefolder}/fluxgym/models/unet"
+    # "flux1-dev.sft | https://huggingface.co/black-forest-labs/FLUX.1-dev/resolve/main/flux1-dev.safetensors?download=true | ${basefolder}/fluxgym/models/unet"
     # 需手动下载
     # "ae.safetensors  | https://huggingface.co/black-forest-labs/FLUX.1-schnell/resolve/main/ae.safetensors?download=true | ${basefolder}/fluxgym/models/vae"
 )
