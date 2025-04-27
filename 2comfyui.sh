@@ -64,5 +64,7 @@ echo "▂▂▂▂▂▂▂▂▂▂ 安装models ▂▂▂▂▂▂▂▂▂▂
 cd "$basefolder/ComfyUI/models/" || exit
 cp -Rfv  $basefolder/ComfyUI-Install-CloudStudio/models/* $basefolder/ComfyUI/models
 pip install ultralytics --upgrade --force-reinstall
+pip install -U numba
+pip install -U pymatting
 
 echo "✅ 安装完成"
