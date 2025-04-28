@@ -15,6 +15,8 @@ conda create -n magi python==3.10.12
 conda install pytorch==2.1.0 torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
 # or
 # pip install torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 --index-url https://download.pytorch.org/whl/cu121
+# or
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
 
 # Install other dependencies
 pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple --force-reinstall --user
