@@ -33,7 +33,7 @@ fi
 # 验证源目录是否存在
 if [ ! -d "$source_dir" ]; then
   echo "错误：源目录 $source_dir 不存在"
-  exit 1
+  exit 0
 fi
 
 # 创建目标根目录
