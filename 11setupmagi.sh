@@ -14,6 +14,8 @@ check_exit() {
 
 basefolder="/workspace"
 
+conda install -c "nvidia/label/cuda-12.4.0" cudatoolkit=12.4 cudnn=8.9.4 -y
+
 # 安装PyTorch（自动选择CUDA版本）
 echo "▂▂▂▂▂▂▂▂▂▂ 安装PyTorch ▂▂▂▂▂▂▂▂▂▂"
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124 \

@@ -48,7 +48,7 @@ find "$source_dir" -type f -print0 | while IFS= read -r -d '' file; do
   dest_file="$target_dir/$relative_path"
   mkdir -p "$(dirname "$dest_file")"
 
-  if [ -f "dest_file" ]; then
+  if [ -f "$dest_file" ]; then
       echo "⏩ $dest_file 文件已存在，跳过下载"
       continue  # 跳过当前循环的后续操作
   fi

@@ -17,28 +17,43 @@ trap 'echo "错误发生在命令: $BASH_COMMAND, 行号: $LINENO, 退出状态:
 # 基础目录设置
 basefolder="/workspace"
 
-$basefolder/ComfyUI-Install_CloudStudio/copydir.sh -s $basefolder/aimodels -d $basefolder/ComfyUI/models
+$basefolder/ComfyUI-Install-CloudStudio/copydir.sh -s $basefolder/aimodels -d $basefolder/ComfyUI/models
 
 # 文件列表（使用 | 分隔三个参数）
 files=(
     # 格式："保存的文件名 | 下载链接 | 目标目录"
-    "v1-5-pruned-emaonly-fp16.safetensors | https://huggingface.co/Comfy-Org/stable-diffusion-v1-5-archive/resolve/main/v1-5-pruned-emaonly.safetensors?download=true | ${basefolder}/ComfyUI/models/checkpoints"
+    # "v1-5-pruned-emaonly-fp16.safetensors | https://huggingface.co/Comfy-Org/stable-diffusion-v1-5-archive/resolve/main/v1-5-pruned-emaonly.safetensors?download=true | ${basefolder}/ComfyUI/models/checkpoints"
 
     ######### Flux GGUF 组合
-    "flux1-dev-Q4_K_S.gguf | https://huggingface.co/city96/FLUX.1-dev-gguf/resolve/main/flux1-dev-Q4_K_S.gguf?download=true | ${basefolder}/ComfyUI/models/unet"
-    "clip_l.safetensors | https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/clip_l.safetensors?download=true | ${basefolder}/ComfyUI/models/clip"
-    "t5-v1_1-xxl-encoder-Q4_K_S.gguf | https://huggingface.co/city96/t5-v1_1-xxl-encoder-gguf/resolve/main/t5-v1_1-xxl-encoder-Q4_K_S.gguf?download=true | ${basefolder}/ComfyUI/models/clip"
-    "flux-vae-bf16.safetensors  | https://huggingface.co/Kijai/flux-fp8/resolve/main/flux-vae-bf16.safetensors?download=true | ${basefolder}/ComfyUI/models/vae"
-    "raulc0399_FLUX.1_dev_openpose.safetensors  | https://huggingface.co/raulc0399/flux_dev_openpose_controlnet/resolve/main/model.safetensors?download=true | ${basefolder}/ComfyUI/models/controlnet"
+    #"flux1-dev-Q4_K_S.gguf | https://huggingface.co/city96/FLUX.1-dev-gguf/resolve/main/flux1-dev-Q4_K_S.gguf?download=true | ${basefolder}/ComfyUI/models/unet"
+    #"clip_l.safetensors | https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/clip_l.safetensors?download=true | ${basefolder}/ComfyUI/models/clip"
+    #"t5-v1_1-xxl-encoder-Q4_K_S.gguf | https://huggingface.co/city96/t5-v1_1-xxl-encoder-gguf/resolve/main/t5-v1_1-xxl-encoder-Q4_K_S.gguf?download=true | ${basefolder}/ComfyUI/models/clip"
+    #"flux-vae-bf16.safetensors  | https://huggingface.co/Kijai/flux-fp8/resolve/main/flux-vae-bf16.safetensors?download=true | ${basefolder}/ComfyUI/models/vae"
+    #"raulc0399_FLUX.1_dev_openpose.safetensors  | https://huggingface.co/raulc0399/flux_dev_openpose_controlnet/resolve/main/model.safetensors?download=true | ${basefolder}/ComfyUI/models/controlnet"
 
     ##########  Flux Fp8 组合， 需32GB vram
-    "flux1-dev-fp8.safetensors | https://huggingface.co/Kijai/flux-fp8/resolve/main/flux1-dev-fp8-e4m3fn.safetensors?download=true | ${basefolder}/ComfyUI/models/unet"
-    "clip_l.safetensors | https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/clip_l.safetensors?download=true | ${basefolder}/ComfyUI/models/clip"
-    "t5xxl_fp8_e4m3fn.safetensors | https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/t5xxl_fp8_e4m3fn.safetensors?download=true | ${basefolder}/ComfyUI/models/clip"
-    # 这个模型需授权下载。可手动下载，然后上传到 /workspace/ComfyUI/models/vae目录下
-    # "ae.safetensors  | https://huggingface.co/black-forest-labs/FLUX.1-schnell/resolve/main/ae.safetensors?download=true | ${basefolder}/ComfyUI/models/vae"
-    "flux-vae-bf16.safetensors  | https://huggingface.co/Kijai/flux-fp8/resolve/main/flux-vae-bf16.safetensors?download=true | ${basefolder}/ComfyUI/models/vae"
-    "diffusion_pytorch_model.safetensors  | https://huggingface.co/InstantX/FLUX.1-dev-Controlnet-Union/resolve/main/diffusion_pytorch_model.safetensors?download=true | ${basefolder}/ComfyUI/models/controlnet"
+    #"flux1-dev-fp8.safetensors | https://huggingface.co/Kijai/flux-fp8/resolve/main/flux1-dev-fp8-e4m3fn.safetensors?download=true | ${basefolder}/ComfyUI/models/unet"
+    #"clip_l.safetensors | https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/clip_l.safetensors?download=true | ${basefolder}/ComfyUI/models/clip"
+    #"t5xxl_fp8_e4m3fn.safetensors | https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/t5xxl_fp8_e4m3fn.safetensors?download=true | ${basefolder}/ComfyUI/models/clip"
+    ## 这个模型需授权下载。可手动下载，然后上传到 /workspace/ComfyUI/models/vae目录下
+    ## "ae.safetensors  | https://huggingface.co/black-forest-labs/FLUX.1-schnell/resolve/main/ae.safetensors?download=true | ${basefolder}/ComfyUI/models/vae"
+    #"flux-vae-bf16.safetensors  | https://huggingface.co/Kijai/flux-fp8/resolve/main/flux-vae-bf16.safetensors?download=true | ${basefolder}/ComfyUI/models/vae"
+    #"diffusion_pytorch_model.safetensors  | https://huggingface.co/InstantX/FLUX.1-dev-Controlnet-Union/resolve/main/diffusion_pytorch_model.safetensors?download=true | ${basefolder}/ComfyUI/models/controlnet"
+
+    ######### 视频
+    "pytorch_model.bin | https://huggingface.co/openai/clip-vit-large-patch14/resolve/main/pytorch_model.bin?download=true | ${basefolder}/ComfyUI/models/clip/openai/clip-vit-large-patch14"
+    "model.safetensors | https://huggingface.co/openai/clip-vit-large-patch14/resolve/main/model.safetensors?download=true?download=true | ${basefolder}/ComfyUI/models/clip/openai/clip-vit-large-patch14"
+    "preprocessor_config.json | https://huggingface.co/openai/clip-vit-large-patch14/resolve/main/preprocessor_config.json?download=true | ${basefolder}/ComfyUI/models/clip/openai/clip-vit-large-patch14"
+    "config.json | https://huggingface.co/openai/clip-vit-large-patch14/resolve/main/config.json?download=true | ${basefolder}/ComfyUI/models/clip/openai/clip-vit-large-patch14"
+    "tokenizer.json | https://huggingface.co/openai/clip-vit-large-patch14/resolve/main/tokenizer.json?download=true | ${basefolder}/ComfyUI/models/clip/openai/clip-vit-large-patch14"
+    "tokenizer_config.json | https://huggingface.co/openai/clip-vit-large-patch14/resolve/main/tokenizer_config.json?download=true | ${basefolder}/ComfyUI/models/clip/openai/clip-vit-large-patch14"
+    "special_tokens_map.json | https://huggingface.co/openai/clip-vit-large-patch14/resolve/main/special_tokens_map.json?download=true | ${basefolder}/ComfyUI/models/clip/openai/clip-vit-large-patch14"
+    "vocab.json | https://huggingface.co/openai/clip-vit-large-patch14/resolve/main/vocab.json?download=true | ${basefolder}/ComfyUI/models/clip/openai/clip-vit-large-patch14"
+    "merges.txt | https://huggingface.co/openai/clip-vit-large-patch14/resolve/main/merges.txt?download=true | ${basefolder}/ComfyUI/models/clip/openai/clip-vit-large-patch14"
+    "hyvid_I2V_lora_embrace.safetensors | https://huggingface.co/Kijai/HunyuanVideo_comfy/resolve/main/hyvid_I2V_lora_embrace.safetensors?download=true | ${basefolder}/ComfyUI/models/loras"
+    "hunyuan_video_I2V-Q4_K_S.gguf | https://huggingface.co/Kijai/HunyuanVideo_comfy/resolve/main/hunyuan_video_I2V-Q4_K_S.gguf?download=true | ${basefolder}/ComfyUI/models/unet"
+    "Llama-3-8B-Instruct-GGUF-Q4_K_M.gguf | https://huggingface.co/thesven/Llama-3-8B-Instruct-GGUF-Q4_K_M/resolve/main/Llama-3-8B-Instruct-GGUF-Q4_K_M.gguf?download=true | ${basefolder}/ComfyUI/models/unet"
+    "hunyuan_video_vae_bf16.safetensors  | https://huggingface.co/Kijai/HunyuanVideo_comfy/resolve/main/hunyuan_video_vae_bf16.safetensors?download=true | ${basefolder}/ComfyUI/models/vae"
 )
 
 echo "▂▂▂▂▂▂▂▂▂▂ 开始批量下载 ▂▂▂▂▂▂▂▂▂▂"

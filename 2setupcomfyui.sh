@@ -36,6 +36,10 @@ echo "▂▂▂▂▂▂▂▂▂▂ 安装totch torchvision torchaudio CUDA121 
 pip install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cu121 --upgrade --force-reinstall
 check_exit $? "安装totch torchvision torchaudio CUDA121失败"
 
+echo "▂▂▂▂▂▂▂▂▂▂ 安装sageattention ▂▂▂▂▂▂▂▂▂▂"
+pip install sageattention
+check_exit $? "安装sageattention"
+
 echo "▂▂▂▂▂▂▂▂▂▂ 设置工作目录 ▂▂▂▂▂▂▂▂▂▂"
 cd "$basefolder" || { echo "目录切换失败: $basefolder"; exit 1; }
 
