@@ -22,7 +22,7 @@ $basefolder/ComfyUI-Install-CloudStudio/copydir.sh -s $basefolder/aimodels -d $b
 # 文件列表（使用 | 分隔三个参数）
 files=(
     # 格式："保存的文件名 | 下载链接 | 目标目录"
-    # "v1-5-pruned-emaonly-fp16.safetensors | https://huggingface.co/Comfy-Org/stable-diffusion-v1-5-archive/resolve/main/v1-5-pruned-emaonly.safetensors?download=true | ${basefolder}/ComfyUI/models/checkpoints"
+    "v1-5-pruned-emaonly-fp16.safetensors | https://huggingface.co/Comfy-Org/stable-diffusion-v1-5-archive/resolve/main/v1-5-pruned-emaonly.safetensors?download=true | ${basefolder}/ComfyUI/models/checkpoints"
 
     ######### Flux GGUF 组合
     #"flux1-dev-Q4_K_S.gguf | https://huggingface.co/city96/FLUX.1-dev-gguf/resolve/main/flux1-dev-Q4_K_S.gguf?download=true | ${basefolder}/ComfyUI/models/unet"
@@ -54,6 +54,9 @@ files=(
     "hunyuan_video_I2V-Q4_K_S.gguf | https://huggingface.co/Kijai/HunyuanVideo_comfy/resolve/main/hunyuan_video_I2V-Q4_K_S.gguf?download=true | ${basefolder}/ComfyUI/models/unet"
     "Llama-3-8B-Instruct-GGUF-Q4_K_M.gguf | https://huggingface.co/thesven/Llama-3-8B-Instruct-GGUF-Q4_K_M/resolve/main/Llama-3-8B-Instruct-GGUF-Q4_K_M.gguf?download=true | ${basefolder}/ComfyUI/models/unet"
     "hunyuan_video_vae_bf16.safetensors  | https://huggingface.co/Kijai/HunyuanVideo_comfy/resolve/main/hunyuan_video_vae_bf16.safetensors?download=true | ${basefolder}/ComfyUI/models/vae"
+    "llava_llama3_fp8_scaled.safetensors | https://huggingface.co/calcuis/hunyuan-gguf/resolve/main/llava_llama3_fp8_scaled.safetensors?download=true | ${basefolder}/ComfyUI/models/text_encoders"
+    "llava_llama3_vision.safetensors | https://huggingface.co/Comfy-Org/HunyuanVideo_repackaged/resolve/main/split_files/clip_vision/llava_llama3_vision.safetensors?download=true | ${basefolder}/ComfyUI/models/clip_vision"
+    "hunyuan_video_v2_replace_image_to_video_720p_bf16.safetensors | https://huggingface.co/Comfy-Org/HunyuanVideo_repackaged/resolve/main/split_files/diffusion_models/hunyuan_video_v2_replace_image_to_video_720p_bf16.safetensors?download=true  | ${basefolder}/ComfyUI/models/diffusion_models"
 )
 
 echo "▂▂▂▂▂▂▂▂▂▂ 开始批量下载 ▂▂▂▂▂▂▂▂▂▂"
