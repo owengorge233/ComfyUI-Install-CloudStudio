@@ -50,11 +50,17 @@ def convert_webp_to_mp4(webp_file):
 if __name__ == "__main__":
     # Use argparse to get file paths from command line
     parser = argparse.ArgumentParser(description="Convert WebP video to MP4 using FFmpeg.")
-    parser.add_argument("-s", "--source", required=True, help="Path to the source WebP video file.")
+    parser.add_argument("-s", "--source", required=True, help="WebP video filename (without folder).")
+    parser.add_argument("-p", "--path", required=False, default="", help="Path to the directory containing the WebP video file. Defaults to current directory.")
+
 
     args = parser.parse_args()  # Parse the arguments
 
-    webp_video = args.source
+    webp_filename = args.source  # Changed variable name to reflect content
+    webp_path = args.path
+
+    # Construct the full path
+    webp_video = os.path.join(webp_path, webp_filename)
 
     conversion_result = convert_webp_to_mp4(webp_video)
     if conversion_result == 0:
