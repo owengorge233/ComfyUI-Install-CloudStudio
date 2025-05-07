@@ -27,7 +27,7 @@ done
 # 检查必填参数
 if [[ -z "$source_dir" || -z "$target_dir" ]]; then
   echo "用法：$0 -s 源目录 -d 目标目录"
-  exit 1
+  exit 0
 fi
 
 # 验证源目录是否存在
