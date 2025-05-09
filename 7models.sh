@@ -17,7 +17,7 @@ trap 'echo "错误发生在命令: $BASH_COMMAND, 行号: $LINENO, 退出状态:
 # 基础目录设置
 basefolder="/workspace"
 
-$basefolder/ComfyUI-Install_CloudStudio/copydir.sh -s $basefolder/aimodels -d $basefolder/fluxgym/models
+$basefolder/ComfyUI-Install-CloudStudio/copydir.sh -s $basefolder/aimodels -d $basefolder/fluxgym/models
 
 files=(
     # 格式："保存的文件名 | 下载链接 | 目标目录"
