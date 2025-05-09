@@ -18,14 +18,14 @@ cd "$basefolder" || { echo "目录切换失败: $basefolder"; exit 1; }
 
 # 定义项目数组（URL|目录名|pip选项）
 projects=(
-#    "https://github.com/Comfy-Org/ComfyUI-Manager.git | comfyui-manager"
-#    "https://github.com/city96/ComfyUI-GGUF | comfyui-gguf"
-#    "https://github.com/ltdrdata/ComfyUI-Impact-Subpack | ComfyUI-Impact-Subpack"
-#    "https://github.com/rgthree/rgthree-comfy | rgthree-comfy"
-#    "https://github.com/chrisgoringe/cg-use-everywhere | cg-use-everywhere"
-#    "https://github.com/PowerHouseMan/ComfyUI-AdvancedLivePortrait | ComfyUI-AdvancedLivePortrait"
-#    "https://github.com/ltdrdata/comfyui-unsafe-torch | comfyui-unsafe-torch"
-#    "https://github.com/kijai/ComfyUI-HunyuanVideoWrapper | ComfyUI-HunyuanVideoWrapper"
+    "https://github.com/Comfy-Org/ComfyUI-Manager.git | comfyui-manager"
+    "https://github.com/city96/ComfyUI-GGUF | comfyui-gguf"
+    "https://github.com/ltdrdata/ComfyUI-Impact-Subpack | ComfyUI-Impact-Subpack"
+    "https://github.com/rgthree/rgthree-comfy | rgthree-comfy"
+    "https://github.com/chrisgoringe/cg-use-everywhere | cg-use-everywhere"
+    "https://github.com/PowerHouseMan/ComfyUI-AdvancedLivePortrait | ComfyUI-AdvancedLivePortrait"
+    "https://github.com/ltdrdata/comfyui-unsafe-torch | comfyui-unsafe-torch"
+    "https://github.com/kijai/ComfyUI-HunyuanVideoWrapper | ComfyUI-HunyuanVideoWrapper"
      "https://github.com/gokayfem/ComfyUI_VLM_nodes.git | ComfyUI_VLM_nodes"
 #     "https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite | ComfyUI-VideoHelperSuite"
 #     "https://github.com/WASasquatch/was-node-suite-comfyui | was-node-suite-comfyui"
@@ -44,7 +44,7 @@ projects=(
  #   "https://github.com/MieMieeeee/ComfyUI-CaptionThis | ComfyUI-CaptionThis"
  #   "https://github.com/madtunebk/ComfyUI-ControlnetAux | ComfyUI-ControlnetAux"
  #   "https://github.com/Cyber-BCat/ComfyUI_Auto_Caption | ComfyUI_Auto_Caption"
- #   "https://github.com/ltdrdata/ComfyUI-Impact-Pack | ComfyUI-Impact-Pack | --upgrade --force-reinstall"
+    "https://github.com/ltdrdata/ComfyUI-Impact-Pack | ComfyUI-Impact-Pack | --upgrade --force-reinstall"
 )
 
 echo "▂▂▂▂▂▂▂▂▂▂ 开始批量安装 ▂▂▂▂▂▂▂▂▂▂"
