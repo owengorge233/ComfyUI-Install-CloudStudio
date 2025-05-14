@@ -53,7 +53,7 @@ files=(
     "ViT-L-14-TEXT-detail-improved-hiT-GmP-TE-only-HF.safetensors | https://huggingface.co/zer0int/CLIP-GmP-ViT-L-14/resolve/main/ViT-L-14-TEXT-detail-improved-hiT-GmP-TE-only-HF.safetensors?download=true  | ${basefolder}/ComfyUI/models/clip"
     "Flux.1-Turbo-8-step-Lora_alpha.safetensors | https://huggingface.co/alimama-creative/FLUX.1-Turbo-Alpha/resolve/main/diffusion_pytorch_model.safetensors?download=true  | ${basefolder}/ComfyUI/models/loras/alimama-creative"
     "Flux.1-Turbo-8-step-Lora_beta.safetensors | https://huggingface.co/alimama-creative/FLUX.1-dev-Controlnet-Inpainting-Beta/resolve/main/diffusion_pytorch_model.safetensors?download=true  | ${basefolder}/ComfyUI/models/loras/alimama-creative"
-    "comfyui_subject_lora16.safetensors | https://huggingface.co/ali-vilab/ACE_Plus/resolve/main/subject/comfyui_subject_lora16.safetensors?download=true  | ${basefolder}/ComfyUI/models/clip/ACE_Plus"
+    "comfyui_subject_lora16.safetensors | https://huggingface.co/ali-vilab/ACE_Plus/resolve/main/subject/comfyui_subject_lora16.safetensors?download=true  | ${basefolder}/ComfyUI/models/loras/ACE_Plus"
 
     # 这个模型需授权下载。可手动下载，然后上传到 /workspace/ComfyUI/models/vae目录下
     # "flux1-fill-dev.safetensors | https://huggingface.co/black-forest-labs/FLUX.1-Fill-dev/resolve/main/flux1-fill-dev.safetensors?download=true | ${basefolder}/ComfyUI/models/unet"
