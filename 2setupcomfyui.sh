@@ -61,7 +61,7 @@ if [ -d "$basefolder/ComfyUI" ]; then
    cd $basefolder/ComfyUI
    pip install -r ./requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple --force-reinstall --user
    check_exit $? "更新ComfyUI依赖失败"
-   pip install aria2
+   #pip install aria2
    echo "更新ComfyUI依赖成功"
 fi
 
