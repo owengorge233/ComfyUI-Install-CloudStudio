@@ -40,20 +40,20 @@ files=(
     #"flux.1_dev_openpose.safetensors  | https://huggingface.co/raulc0399/flux_dev_openpose_controlnet/resolve/main/model.safetensors?download=true | ${basefolder}/ComfyUI/models/controlnet"
 
     ##########  Flux Fp8 组合， 需32GB vram
-    #"flux1-dev-fp8.safetensors | https://huggingface.co/Kijai/flux-fp8/resolve/main/flux1-dev-fp8-e4m3fn.safetensors?download=true | ${basefolder}/ComfyUI/models/unet"
-    #"clip_l-flux.safetensors | https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/clip_l.safetensors?download=true | ${basefolder}/ComfyUI/models/clip"
-    #"t5xxl_fp8_e4m3fn.safetensors | https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/t5xxl_fp8_e4m3fn.safetensors?download=true | ${basefolder}/ComfyUI/models/clip"
-    #"flux-vae-bf16.safetensors  | https://huggingface.co/Kijai/flux-fp8/resolve/main/flux-vae-bf16.safetensors?download=true | ${basefolder}/ComfyUI/models/vae"
-    #"diffusion_pytorch_model.safetensors  | https://huggingface.co/InstantX/FLUX.1-dev-Controlnet-Union/resolve/main/diffusion_pytorch_model.safetensors?download=true | ${basefolder}/ComfyUI/models/controlnet/InstantX/FLUX.1-dev-Controlnet-Union"
+    "flux1-dev-fp8.safetensors | https://huggingface.co/Kijai/flux-fp8/resolve/main/flux1-dev-fp8-e4m3fn.safetensors?download=true | ${basefolder}/ComfyUI/models/unet"
+    "clip_l-flux.safetensors | https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/clip_l.safetensors?download=true | ${basefolder}/ComfyUI/models/clip"
+    "t5xxl_fp8_e4m3fn.safetensors | https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/t5xxl_fp8_e4m3fn.safetensors?download=true | ${basefolder}/ComfyUI/models/clip"
+    "flux-vae-bf16.safetensors  | https://huggingface.co/Kijai/flux-fp8/resolve/main/flux-vae-bf16.safetensors?download=true | ${basefolder}/ComfyUI/models/vae"
+    "diffusion_pytorch_model.safetensors  | https://huggingface.co/InstantX/FLUX.1-dev-Controlnet-Union/resolve/main/diffusion_pytorch_model.safetensors?download=true | ${basefolder}/ComfyUI/models/controlnet/InstantX/FLUX.1-dev-Controlnet-Union"
 
     ################### 换装
-    "sigclip_vision_patch14_384.safetensors | https://huggingface.co/Comfy-Org/sigclip_vision_384/resolve/main/sigclip_vision_patch14_384.safetensors?download=true | ${basefolder}/ComfyUI/models/clip"
-    "t5xxl_fp16.safetensors | https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/t5xxl_fp16.safetensors?download=true | ${basefolder}/ComfyUI/models/clip"
-    "ViT-L-14-TEXT-detail-improved-hiT-GmP-HF.safetensors | https://huggingface.co/zer0int/CLIP-GmP-ViT-L-14/resolve/main/ViT-L-14-TEXT-detail-improved-hiT-GmP-HF.safetensors?download=true  | ${basefolder}/ComfyUI/models/clip"
-    "ViT-L-14-TEXT-detail-improved-hiT-GmP-TE-only-HF.safetensors | https://huggingface.co/zer0int/CLIP-GmP-ViT-L-14/resolve/main/ViT-L-14-TEXT-detail-improved-hiT-GmP-TE-only-HF.safetensors?download=true  | ${basefolder}/ComfyUI/models/clip"
-    "Flux.1-Turbo-8-step-Lora_alpha.safetensors | https://huggingface.co/alimama-creative/FLUX.1-Turbo-Alpha/resolve/main/diffusion_pytorch_model.safetensors?download=true  | ${basefolder}/ComfyUI/models/loras/alimama-creative"
-    "Flux.1-Turbo-8-step-Lora_beta.safetensors | https://huggingface.co/alimama-creative/FLUX.1-dev-Controlnet-Inpainting-Beta/resolve/main/diffusion_pytorch_model.safetensors?download=true  | ${basefolder}/ComfyUI/models/loras/alimama-creative"
-    "comfyui_subject_lora16.safetensors | https://huggingface.co/ali-vilab/ACE_Plus/resolve/main/subject/comfyui_subject_lora16.safetensors?download=true  | ${basefolder}/ComfyUI/models/loras/ACE_Plus"
+    #"sigclip_vision_patch14_384.safetensors | https://huggingface.co/Comfy-Org/sigclip_vision_384/resolve/main/sigclip_vision_patch14_384.safetensors?download=true | ${basefolder}/ComfyUI/models/clip"
+    #"t5xxl_fp16.safetensors | https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/t5xxl_fp16.safetensors?download=true | ${basefolder}/ComfyUI/models/clip"
+    #"ViT-L-14-TEXT-detail-improved-hiT-GmP-HF.safetensors | https://huggingface.co/zer0int/CLIP-GmP-ViT-L-14/resolve/main/ViT-L-14-TEXT-detail-improved-hiT-GmP-HF.safetensors?download=true  | ${basefolder}/ComfyUI/models/clip"
+    #"ViT-L-14-TEXT-detail-improved-hiT-GmP-TE-only-HF.safetensors | https://huggingface.co/zer0int/CLIP-GmP-ViT-L-14/resolve/main/ViT-L-14-TEXT-detail-improved-hiT-GmP-TE-only-HF.safetensors?download=true  | ${basefolder}/ComfyUI/models/clip"
+    #"Flux.1-Turbo-8-step-Lora_alpha.safetensors | https://huggingface.co/alimama-creative/FLUX.1-Turbo-Alpha/resolve/main/diffusion_pytorch_model.safetensors?download=true  | ${basefolder}/ComfyUI/models/loras/alimama-creative"
+    #"Flux.1-Turbo-8-step-Lora_beta.safetensors | https://huggingface.co/alimama-creative/FLUX.1-dev-Controlnet-Inpainting-Beta/resolve/main/diffusion_pytorch_model.safetensors?download=true  | ${basefolder}/ComfyUI/models/loras/alimama-creative"
+    #"comfyui_subject_lora16.safetensors | https://huggingface.co/ali-vilab/ACE_Plus/resolve/main/subject/comfyui_subject_lora16.safetensors?download=true  | ${basefolder}/ComfyUI/models/loras/ACE_Plus"
 
     # 这个模型需授权下载。可手动下载，然后上传到 /workspace/ComfyUI/models/vae目录下
     # "flux1-fill-dev.safetensors | https://huggingface.co/black-forest-labs/FLUX.1-Fill-dev/resolve/main/flux1-fill-dev.safetensors?download=true | ${basefolder}/ComfyUI/models/unet"

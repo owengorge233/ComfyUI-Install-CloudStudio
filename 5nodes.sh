@@ -28,9 +28,9 @@ projects=(
     "https://github.com/kijai/ComfyUI-HunyuanVideoWrapper | ComfyUI-HunyuanVideoWrapper"
      "https://github.com/gokayfem/ComfyUI_VLM_nodes.git | ComfyUI_VLM_nodes"
 #     "https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite | ComfyUI-VideoHelperSuite"
-#     "https://github.com/WASasquatch/was-node-suite-comfyui | was-node-suite-comfyui"
-#     "https://github.com/spacepxl/ComfyUI-Image-Filters | ComfyUI-Image-Filters"
-#     "https://github.com/cubiq/ComfyUI_essentials | ComfyUI_essentials"
+     "https://github.com/WASasquatch/was-node-suite-comfyui | was-node-suite-comfyui"
+     "https://github.com/spacepxl/ComfyUI-Image-Filters | ComfyUI-Image-Filters"
+     "https://github.com/cubiq/ComfyUI_essentials | ComfyUI_essentials"
     "https://github.com/pythongosssss/ComfyUI-Custom-Scripts | ComfyUI-Custom-Scripts"
  # 换装
      "https://github.com/kijai/ComfyUI-KJNodes | ComfyUI-KJNodes"
