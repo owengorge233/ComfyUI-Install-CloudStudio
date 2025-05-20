@@ -45,6 +45,7 @@ files=(
     "t5xxl_fp8_e4m3fn.safetensors | https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/t5xxl_fp8_e4m3fn.safetensors?download=true | ${basefolder}/ComfyUI/models/clip"
     "flux-vae-bf16.safetensors  | https://huggingface.co/Kijai/flux-fp8/resolve/main/flux-vae-bf16.safetensors?download=true | ${basefolder}/ComfyUI/models/vae"
     "diffusion_pytorch_model.safetensors  | https://huggingface.co/InstantX/FLUX.1-dev-Controlnet-Union/resolve/main/diffusion_pytorch_model.safetensors?download=true | ${basefolder}/ComfyUI/models/controlnet/InstantX/FLUX.1-dev-Controlnet-Union"
+    "512-inpainting-ema.safetensors | https://huggingface.co/stabilityai/stable-diffusion-2-inpainting/resolve/main/512-inpainting-ema.safetensors?download=true | ${basefolder}/ComfyUI/models/checkpoints"
 
     ################### 换装
     #"sigclip_vision_patch14_384.safetensors | https://huggingface.co/Comfy-Org/sigclip_vision_384/resolve/main/sigclip_vision_patch14_384.safetensors?download=true | ${basefolder}/ComfyUI/models/clip"

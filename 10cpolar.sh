@@ -35,4 +35,4 @@ fi
 
 cd "$SCRIPT_DIR"
 ./cpolar authtoken $CPOLAR_TOKEN
-./cpolar http 8188
+./cpolar http -subdomain=comfyuics -region=cn 8188
