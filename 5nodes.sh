@@ -36,6 +36,10 @@ projects=(
      "https://github.com/kijai/ComfyUI-KJNodes | ComfyUI-KJNodes"
      "https://github.com/lldacing/ComfyUI_Patches_ll | ComfyUI_Patches_ll"
  # 换装end
+ # 重绘
+     "https://github.com/rubi-du/ComfyUI-Flux-Inpainting.git | comfyui-flux-inpainting"
+
+ # 重绘end
  #   "https://github.com/AlekPet/ComfyUI_Custom_Nodes_AlekPet | ComfyUI_Custom_Nodes_AlekPet"
  #   "https://github.com/pythongosssss/ComfyUI-WD14-Tagger | ComfyUI-WD14-Tagger"
  #   "https://github.com/LarryJane491/Lora-Training-in-Comfy | Lora-Training-in-Comfy"
