@@ -14,11 +14,9 @@ check_exit() {
 
 basefolder="/workspace"
 
-conda install -c "nvidia/label/cuda-12.4.0" cudatoolkit=12.4 cudnn=8.9.4 -y
-
 # 安装PyTorch（自动选择CUDA版本）
 echo "▂▂▂▂▂▂▂▂▂▂ 安装PyTorch ▂▂▂▂▂▂▂▂▂▂"
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124 \
+conda install pytorch==2.4.0 torchvision==0.19.0 torchaudio==2.4.0 pytorch-cuda=12.4 -c pytorch -c nvidia \
     || check_exit $? "PyTorch安装失败"
 
 # 设置工作目录

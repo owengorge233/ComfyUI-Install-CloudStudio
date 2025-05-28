@@ -4,6 +4,8 @@ export PS1="\u@\h:\w\$ "
 
 set -euo pipefail
 
+conda create --name comfyui python=3.12 -y
+
 NGROK_TOKEN=""
 SCRIPT_DIR="$(
     cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1
