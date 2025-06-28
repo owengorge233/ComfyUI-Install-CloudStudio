@@ -16,10 +16,10 @@ target_dir="$(dirname "$SCRIPT_DIR")"
 
 ngroktokens_file="$SCRIPT_DIR/ngroktokens.txt"
 
-echo 'export http_proxy=http://proxy.cloudstudio.work:8081' >> ~/.bashrc
-echo 'export HTTP_PROXY=http://proxy.cloudstudio.work:8081' >> ~/.bashrc
-echo 'export https_proxy=http://proxy.cloudstudio.work:8081' >> ~/.bashrc
-echo 'export HTTPS_PROXY=http://proxy.cloudstudio.work:8081' >> ~/.bashrc
+#echo 'export http_proxy=http://proxy.cloudstudio.work:8081' >> ~/.bashrc
+#echo 'export HTTP_PROXY=http://proxy.cloudstudio.work:8081' >> ~/.bashrc
+#echo 'export https_proxy=http://proxy.cloudstudio.work:8081' >> ~/.bashrc
+#echo 'export HTTPS_PROXY=http://proxy.cloudstudio.work:8081' >> ~/.bashrc
 echo 'export no_proxy=127.0.0.1,localhost,.local,.tencent.com,tencentyun.com,ppa.launchpad.net,0.0.0.0' >> ~/.bashrc
 echo 'export NO_PROXY=127.0.0.1,localhost,.local,.tencent.com,tencentyun.com,ppa.launchpad.net,0.0.0.0' >> ~/.bashrc
 
