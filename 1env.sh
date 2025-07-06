@@ -5,7 +5,7 @@ export PS1="\u@\h:\w\$ "
 set -euo pipefail
 
 conda create --name comfyui python=3.12 -y
-conda create --name fluxgym python=3.12 -y
+#conda create --name fluxgym python=3.12 -y
 
 NGROK_TOKEN=""
 SCRIPT_DIR="$(
