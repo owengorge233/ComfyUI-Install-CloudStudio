@@ -143,19 +143,19 @@ files=(
 
     #flux-Kontext
     # 11.9GB: flux1-dev-kontext_fp8_scaled.safetensors -> 8.safetensors
-    "8.safetensors | https://huggingface.co/Comfy-Org/flux1-kontext-dev_ComfyUI/resolve/main/split_files/diffusion_models/flux1-dev-kontext_fp8_scaled.safetensors | ${basefolder}/ComfyUI/models/diffusion_models"
+    #"8.safetensors | https://huggingface.co/Comfy-Org/flux1-kontext-dev_ComfyUI/resolve/main/split_files/diffusion_models/flux1-dev-kontext_fp8_scaled.safetensors | ${basefolder}/ComfyUI/models/diffusion_models"
     #335MB ae.safetensors -> 9.safetensors  需手动上传
     #"9.safetensors | https://huggingface.co/Comfy-Org/Lumina_Image_2.0_Repackaged/blob/main/split_files/vae/ae.safetensors | ${basefolder}/ComfyUI/models/vae"
     # 这个则不用手动上传 335MB ae.safetensors -> 9.safetensors
-    "9.safetensors  | https://huggingface.co/receptektas/black-forest-labs-ae_safetensors/resolve/main/ae.safetensors?download=true | ${basefolder}/ComfyUI/models/vae"
+    #"9.safetensors  | https://huggingface.co/receptektas/black-forest-labs-ae_safetensors/resolve/main/ae.safetensors?download=true | ${basefolder}/ComfyUI/models/vae"
     #246MB clip_l.safetensors -> 10.safetensors
-    "10.safetensors | https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/clip_l.safetensors?download=true | ${basefolder}/ComfyUI/models/text_encoders"
+    #"10.safetensors | https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/clip_l.safetensors?download=true | ${basefolder}/ComfyUI/models/text_encoders"
     #9.79GB t5xxl_fp16.safetensors -> 11.safetensors
     #"11.safetensors | https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/t5xxl_fp16.safetensors | ${basefolder}/ComfyUI/models/text_encoders"
     #5.16GB t5xxl_fp8_e4m3fn_scaled -> 11.safetensors
     #"11.safetensors | https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/t5xxl_fp8_e4m3fn_scaled.safetensors | ${basefolder}/ComfyUI/models/text_encoders"
     #4.89GB t5xxl_fp8_e4m3fn.safetensors -> 11.safetensors
-    "11.safetensors | https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/t5xxl_fp8_e4m3fn.safetensors?download=true | ${basefolder}/ComfyUI/models/text_encoders"
+    #"11.safetensors | https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/t5xxl_fp8_e4m3fn.safetensors?download=true | ${basefolder}/ComfyUI/models/text_encoders"
 )
 
 echo "▂▂▂▂▂▂▂▂▂▂ 开始批量下载 ▂▂▂▂▂▂▂▂▂▂"

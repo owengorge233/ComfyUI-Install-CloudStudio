@@ -58,8 +58,20 @@ projects=(
  #    "https://github.com/rubi-du/ComfyUI-Flux-Inpainting.git | comfyui-flux-inpainting"
  # 重绘end
  # easy use
- "https://github.com/ltdrdata/ComfyUI-Inspire-Pack | ComfyUI-Inspire-Pack"
+ #"https://github.com/ltdrdata/ComfyUI-Inspire-Pack | ComfyUI-Inspire-Pack"
  #
+
+ # Kontext版本
+ #   "https://github.com/Comfy-Org/ComfyUI-Manager.git | comfyui-manager"
+ #   "https://github.com/rgthree/rgthree-comfy | rgthree-comfy"
+ #   "https://github.com/WASasquatch/was-node-suite-comfyui | was-node-suite-comfyui"
+ #   "https://github.com/spacepxl/ComfyUI-Image-Filters | ComfyUI-Image-Filters"
+ #   "https://github.com/cubiq/ComfyUI_essentials | ComfyUI_essentials"
+ #   "https://github.com/pythongosssss/ComfyUI-Custom-Scripts | ComfyUI-Custom-Scripts"
+ #   "https://github.com/ltdrdata/ComfyUI-Impact-Subpack | ComfyUI-Impact-Subpack"
+ #   "https://github.com/AlekPet/ComfyUI_Custom_Nodes_AlekPet | ComfyUI_Custom_Nodes_AlekPet"
+ #   "https://github.com/pythongosssss/ComfyUI-Custom-Scripts | ComfyUI-Custom-Scripts"
+
  # 阿里妈妈重绘
  # "https://github.com/Comfy-Org/ComfyUI-Manager.git | comfyui-manager"
  #  "https://github.com/city96/ComfyUI-GGUF | comfyui-gguf"
